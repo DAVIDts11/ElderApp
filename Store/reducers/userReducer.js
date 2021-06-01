@@ -1,6 +1,11 @@
 import {LOGIN} from '../actions/userAction';
 
-const initState = {currentUser: null};
+const initUser = {
+    username:"default-name",
+    password:"default-password",
+    selected:"default-userType"
+};
+const initState = {currentUser: initUser};
 
 
 export default function reducer(state = initState, action){
