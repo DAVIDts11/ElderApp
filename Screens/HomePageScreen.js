@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 
 
-const MainPage = () => {
+const Homepage = () => {
     const { currentUser } = useSelector(state => state.user);
     console.log("store user = ",currentUser );
   
@@ -14,4 +14,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default Homepage;
