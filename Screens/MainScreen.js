@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button , StyleSheet} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 
 const MainScreen = ({navigation}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Button
         title="Sign Up"
         onPress={() => {
-          return navigation.navigate('Sign Up');
+          return navigation.navigate('SignUp');
         }}
       ></Button>
 
@@ -24,3 +24,15 @@ const MainScreen = ({navigation}) => {
 };
 
 export default MainScreen;
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "peachpuff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
+  },
+});

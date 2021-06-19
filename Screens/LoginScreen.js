@@ -64,7 +64,11 @@ const Login = () => {
 
 const styles = StyleSheet.create({
   contener: {
-    backgroundColor: "green",
+    flex: 1,
+    backgroundColor: "peachpuff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
   textInput: {
     backgroundColor: "cornsilk",

@@ -4,7 +4,7 @@ import SelectPicker from "react-native-form-select-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNUP_ACTION } from "../Store/actions/userAction";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const options = ["Club Member", "Volunteer"];
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   return (
-    <View style={styles.contener}>
+<View style={styles.contener}>
       <TextInput
         style={styles.textInput}
         placeholder="Enter email"
@@ -53,7 +53,7 @@ const SignUp = () => {
             selected,
           };
           //check if user exists function
-          // props.DB.ref("users").push(User);
+          props.DB.ref("users").push(User);
           dispatch(SIGNUP_ACTION.userSignUp(User));
           console.log(
             `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
@@ -67,7 +67,11 @@ const SignUp = () => {
 
 const styles = StyleSheet.create({
   contener: {
-    backgroundColor: "green",
+    flex: 1,
+    backgroundColor: "peachpuff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
   textInput: {
     backgroundColor: "cornsilk",

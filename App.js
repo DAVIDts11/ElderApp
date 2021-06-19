@@ -39,7 +39,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="MainScreen">
           <Stack.Screen name="MainScreen" component={MainScreen} />
           <Stack.Screen name="Login" component={Login} DB={DB}/>
-          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="SignUp" component={SignUp} DB={DB}/>
           <Stack.Screen name="Homepage" component={Homepage} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -48,13 +48,3 @@ export default function App() {
     );
   };
 
-const styles = StyleSheet.create({
-  SignUp: {},
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: Platform.OS === "android" ? 25 : 0,
-  },
-});
