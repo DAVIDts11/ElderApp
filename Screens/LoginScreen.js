@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOGIN_ACTION } from "../Store/actions/userAction";
 import firebase from "firebase";
 
-const Login = (props) => {
-  
+const Login = () => {
   const options = ["Club Member", "Volunteer"];
 
   // remove these initial assignments after testing
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selected, setSelected] = useState();
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -33,37 +31,33 @@ const Login = (props) => {
         onChangeText={(text) => setPassword(text)}
       />
 
-      <SelectPicker
-        style={styles.selector}
-        onValueChange={(value) => {
-          // Do anything you want with the value.
-          // For example, save in state.
-          setSelected(value);
-        }}
-        selected={selected}
-        placeholder="User Type"
-      >
-        {Object.values(options).map((val, index) => (
-          <SelectPicker.Item label={val} value={val} key={index + 5} />
-        ))}
-      </SelectPicker>
-      <Button
+      {/* <Button
         style={styles.button}
         title="Login"
         onPress={() => {
           const User = {
             email,
             password,
-            selected,
           };
           //check if user exists function
-          DB.ref("users").push(User);
-          dispatch(SIGNUP_ACTION.userSignUp(User));
+          DB.ref("users")
+            .get()
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                console.log(snapshot.val());
+              } else {
+                console.log("No data available");
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+          dispatch(LOGIN_ACTION.userLogin(User));
           console.log(
             `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
           );
         }}
-      />
+      /> */}
     </View>
   );
 };

@@ -1,11 +1,17 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
-import SignUp from "./Screens/SignUpScreen";
-import HomePage from "./Screens/HomePageScreen";
 import firebase from "firebase";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from "./Screens/LoginScreen";
+import SignUp from "./Screens/SignUpScreen";
+import Homepage from "./Screens/HomePageScreen";
+import MainScreen from "./Screens/MainScreen";
+
 
 
 export default function App() {
@@ -25,21 +31,28 @@ export default function App() {
     setDB(database);
   }, []);
 
-  return (
-    <View style={styles.container}>
+  const Stack = createStackNavigator();
+    return (
+
       <Provider store={store}>
-        <SignUp DB={DB} style={styles.SignUp}> </SignUp>
-        <HomePage></HomePage>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="MainScreen">
+          <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="Login" component={Login} DB={DB}/>
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="Homepage" component={Homepage} />
+        </Stack.Navigator>
+      </NavigationContainer>
       </Provider>
-    </View>
-  );
-}
+
+    );
+  };
 
 const styles = StyleSheet.create({
   SignUp: {},
   container: {
     flex: 1,
-    backgroundColor: "green",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     paddingTop: Platform.OS === "android" ? 25 : 0,

@@ -4,12 +4,11 @@ import SelectPicker from "react-native-form-select-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNUP_ACTION } from "../Store/actions/userAction";
 
-const SignUp = (props) => {
+const SignUp = () => {
   const options = ["Club Member", "Volunteer"];
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [selected, setSelected] = useState();
-
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -54,13 +53,14 @@ const SignUp = (props) => {
             selected,
           };
           //check if user exists function
-          props.DB.ref("users").push(User);
+          // props.DB.ref("users").push(User);
           dispatch(SIGNUP_ACTION.userSignUp(User));
           console.log(
             `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
           );
         }}
       />
+
     </View>
   );
 };
