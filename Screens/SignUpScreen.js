@@ -77,7 +77,12 @@ const SignUp = ({ navigation }) => {
               console.log(
                 `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
               );
-              navigation.navigate('Homepage');
+              if(User.selected == "Volunteer"){
+                navigation.navigate('HomepageVolunteer');
+              }
+              else {
+                navigation.navigate('HomepageMember');
+              }
             }
 
         }}

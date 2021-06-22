@@ -9,7 +9,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./Screens/LoginScreen";
 import SignUp from "./Screens/SignUpScreen";
-import Homepage from "./Screens/HomePageScreen";
+import HomepageVolunteer from "./Screens/HomePageScreenVo";
+import HomepageMember  from "./Screens/HomePageScreenMem";
 import MainScreen from "./Screens/MainScreen";
 
 
@@ -18,17 +19,7 @@ export default function App() {
   const [DB, setDB] = useState();
 
   useEffect(() => {
-    // let firebaseConfig = {
-    //   apiKey: "AIzaSyA48cbMgESZYhAcx3qwoYRspHr1m3Quu00",
-    //   authDomain: "elderapp-54404.firebaseapp.com",
-    //   projectId: "elderapp-54404",
-    //   storageBucket: "elderapp-54404.appspot.com",
-    //   messagingSenderId: "839232656580",
-    //   appId: "1:839232656580:web:a69e3cb73d0536040f6591",
-    // };
-    // firebase.initializeApp(firebaseConfig);
-    // let database = firebase.database();
-    // setDB(database);
+
   }, []);
 
   const Stack = createStackNavigator();
@@ -39,8 +30,9 @@ export default function App() {
         <Stack.Navigator initialRouteName="MainScreen">
           <Stack.Screen name="MainScreen" component={MainScreen} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="Homepage" component={Homepage} />
+          <Stack.Screen name="SignUp" component={SignUp} /> 
+          <Stack.Screen name="HomepageVolunteer" component={HomepageVolunteer} />
+          <Stack.Screen name="HomepageMember" component={HomepageMember} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

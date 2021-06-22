@@ -3,15 +3,15 @@ import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 
 
-const Homepage = () => {
+const HomepageMember = () => {
     const { currentUser } = useSelector(state => state.user);
     console.log("store user = ",currentUser );
   
     return (
         <View>
-            <Text>{currentUser.email}</Text>
+            <Text>Hello member {currentUser.email}  !!</Text>
         </View>
     )
 }
 
-export default Homepage;
+export default HomepageMember;

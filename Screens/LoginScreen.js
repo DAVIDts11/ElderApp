@@ -38,36 +38,43 @@ const Login = ({navigation}) => {
         style={styles.button}
         title="Login"
         onPress={async () => {
-          const User = {
+          let User = {
             email,
             password,
+            selected:""
           };
-
+           let matched = false;
           //check if user exists function
           await database.ref("users")
             .get().then( (snapshot) => {
               snapshot.forEach((child) => {
                 if (child.val().email==User.email){
-                  if (child.val().password ==User.password){
-                    console.log("Wellcom  !!!");
-                    navigation.navigate('Homepage');
+                  if (child.val().password == User.password){
+                    matched=true;
+                    console.log("Wellcom  !!!" , child.val().selected);
+                    User.selected = child.val().selected;
+                    dispatch(LOGIN_ACTION.userLogin(User));
+                    console.log(
+                      `Your email is ${email} \n and your password  is ${password}\n. You are  ${User.selected} `
+                    );
+                    if(child.val().selected == "Volunteer"){
+                      navigation.navigate('HomepageVolunteer');
+                    }
+                    else {
+                      navigation.navigate('HomepageMember');
+                    }
+                    
                   }
-                }
-                else { 
-                  console.log("Incorrect email or passward"); 
-                  setShowError(true);
                 }
               });
               }).catch((error) => {
               console.error(error);
             });
-
-       
-          dispatch(LOGIN_ACTION.userLogin(User));
-          console.log(
-            `Your email is ${email} \n and your password  is ${password}\n. You are`  // ${selected}
-          );
-         
+            if (matched==false){
+              console.log("Incorrect email or passward"); 
+              setShowError(true);  
+            }
+        
         }}
       />
     </View>
