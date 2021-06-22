@@ -12,6 +12,9 @@ import SignUp from "./Screens/SignUpScreen";
 import HomepageVolunteer from "./Screens/HomePageScreenVo";
 import HomepageMember  from "./Screens/HomePageScreenMem";
 import MainScreen from "./Screens/MainScreen";
+import pickMeUpForm from "./Screens/pickMeUpForm";
+import overMedicationForm from "./Screens/overMedicationForm";
+
 
 
 
@@ -33,6 +36,8 @@ export default function App() {
           <Stack.Screen name="SignUp" component={SignUp} /> 
           <Stack.Screen name="HomepageVolunteer" component={HomepageVolunteer} />
           <Stack.Screen name="HomepageMember" component={HomepageMember} />
+          <Stack.Screen name="pickMeUpForm" component={pickMeUpForm} />
+          <Stack.Screen name="overMedicationForm" component={overMedicationForm} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

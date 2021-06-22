@@ -13,15 +13,15 @@ const HomepageMember = ({ navigation }) => {
             <View style={styles.row} >
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={onPress}
+                    onPress={()=>navigation.navigate('overMedicationForm')}
                 >
-                    <Text> lala1   </Text>
+                    <Text> over-the counter medication </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={onPress}
+                    onPress={()=>navigation.navigate('pickMeUpForm')}
                 >
-                    <Text> lala2   </Text>
+                    <Text> Pick me Up  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}

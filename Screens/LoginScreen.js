@@ -4,7 +4,7 @@ import SelectPicker from "react-native-form-select-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGIN_ACTION } from "../Store/actions/userAction";
 import firebase from "firebase";
-import database from "../config/fireBaseConfig"
+import database from "../config/fireBaseConfig";
 
 const Login = ({navigation}) => {
   const options = ["Club Member", "Volunteer"];
