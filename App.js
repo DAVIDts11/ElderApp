@@ -18,17 +18,17 @@ export default function App() {
   const [DB, setDB] = useState();
 
   useEffect(() => {
-    let firebaseConfig = {
-      apiKey: "AIzaSyA48cbMgESZYhAcx3qwoYRspHr1m3Quu00",
-      authDomain: "elderapp-54404.firebaseapp.com",
-      projectId: "elderapp-54404",
-      storageBucket: "elderapp-54404.appspot.com",
-      messagingSenderId: "839232656580",
-      appId: "1:839232656580:web:a69e3cb73d0536040f6591",
-    };
-    firebase.initializeApp(firebaseConfig);
-    let database = firebase.database();
-    setDB(database);
+    // let firebaseConfig = {
+    //   apiKey: "AIzaSyA48cbMgESZYhAcx3qwoYRspHr1m3Quu00",
+    //   authDomain: "elderapp-54404.firebaseapp.com",
+    //   projectId: "elderapp-54404",
+    //   storageBucket: "elderapp-54404.appspot.com",
+    //   messagingSenderId: "839232656580",
+    //   appId: "1:839232656580:web:a69e3cb73d0536040f6591",
+    // };
+    // firebase.initializeApp(firebaseConfig);
+    // let database = firebase.database();
+    // setDB(database);
   }, []);
 
   const Stack = createStackNavigator();
@@ -38,8 +38,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="MainScreen">
           <Stack.Screen name="MainScreen" component={MainScreen} />
-          <Stack.Screen name="Login" component={Login} DB={DB}/>
-          <Stack.Screen name="SignUp" component={SignUp} DB={DB}/>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Homepage" component={Homepage} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -48,3 +48,12 @@ export default function App() {
     );
   };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
+  },
+});

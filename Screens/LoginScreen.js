@@ -4,19 +4,22 @@ import SelectPicker from "react-native-form-select-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGIN_ACTION } from "../Store/actions/userAction";
 import firebase from "firebase";
+import database from "../config/fireBaseConfig"
 
-const Login = () => {
+const Login = ({navigation}) => {
   const options = ["Club Member", "Volunteer"];
 
   // remove these initial assignments after testing
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.contener}>
+     { showError ? <Text style={styles.errorMsg}> Incorrect email or passward </Text> : null }
       <TextInput
         style={styles.textInput}
         placeholder="Enter email"
@@ -31,33 +34,42 @@ const Login = () => {
         onChangeText={(text) => setPassword(text)}
       />
 
-      {/* <Button
+      <Button
         style={styles.button}
         title="Login"
-        onPress={() => {
+        onPress={async () => {
           const User = {
             email,
             password,
           };
+
           //check if user exists function
-          DB.ref("users")
-            .get()
-            .then((snapshot) => {
-              if (snapshot.exists()) {
-                console.log(snapshot.val());
-              } else {
-                console.log("No data available");
-              }
-            })
-            .catch((error) => {
+          await database.ref("users")
+            .get().then( (snapshot) => {
+              snapshot.forEach((child) => {
+                if (child.val().email==User.email){
+                  if (child.val().password ==User.password){
+                    console.log("Wellcom  !!!");
+                    navigation.navigate('Homepage');
+                  }
+                }
+                else { 
+                  console.log("Incorrect email or passward"); 
+                  setShowError(true);
+                }
+              });
+              }).catch((error) => {
               console.error(error);
             });
+
+       
           dispatch(LOGIN_ACTION.userLogin(User));
           console.log(
-            `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
+            `Your email is ${email} \n and your password  is ${password}\n. You are`  // ${selected}
           );
+         
         }}
-      /> */}
+      />
     </View>
   );
 };
@@ -81,6 +93,9 @@ const styles = StyleSheet.create({
     width: 250,
     height: 50,
     marginBottom: 30,
+  },
+  errorMsg:{
+    color:"red"
   },
   button: {},
 });

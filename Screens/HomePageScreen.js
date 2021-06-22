@@ -9,7 +9,7 @@ const Homepage = () => {
   
     return (
         <View>
-            <Text>{currentUser.username}</Text>
+            <Text>{currentUser.email}</Text>
         </View>
     )
 }

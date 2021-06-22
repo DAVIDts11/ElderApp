@@ -3,18 +3,22 @@ import { View, TextInput, StyleSheet, Button, Text, Item } from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNUP_ACTION } from "../Store/actions/userAction";
+import database from "../config/fireBaseConfig"
 
-const SignUp = (props) => {
+const SignUp = ({ navigation }) => {
   const options = ["Club Member", "Volunteer"];
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
-<View style={styles.contener}>
+    <View style={styles.contener}>
+      { showError ? <Text style={styles.errorMsg}> "User with ehis email is allrady exist !! </Text> : null}
+
       <TextInput
         style={styles.textInput}
         placeholder="Enter email"
@@ -46,18 +50,36 @@ const SignUp = (props) => {
       <Button
         style={styles.button}
         title="Sign Up"
-        onPress={() => {
+        onPress={async () => {
           const User = {
             email,
             password,
             selected,
           };
           //check if user exists function
-          props.DB.ref("users").push(User);
-          dispatch(SIGNUP_ACTION.userSignUp(User));
-          console.log(
-            `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
-          );
+          let error = false ;
+          await database.ref("users")
+            .get().then((snapshot) => {
+              snapshot.forEach((child) => {
+                if (child.val().email == User.email) {
+                  error = true;
+                  console.log("User with ehis email is allrady exist  !!!");
+                  setShowError(true);
+                }
+              });
+            }).catch((error) => {
+              console.error(error);
+            });
+            if(error == false){
+              database.ref("users").push(User);
+              dispatch(SIGNUP_ACTION.userSignUp(User));
+
+              console.log(
+                `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
+              );
+              navigation.navigate('Homepage');
+            }
+
         }}
       />
 
@@ -84,6 +106,9 @@ const styles = StyleSheet.create({
     width: 250,
     height: 50,
     marginBottom: 30,
+  },
+  errorMsg:{
+    color:"red"
   },
   button: {},
 });
