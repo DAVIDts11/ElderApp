@@ -38,6 +38,16 @@ const overMedicationForm = ({ navigation }) => {
                 title="Submit"
                 onPress={async () => {
                     console.log("pressed");
+                    let request = {
+                        name,
+                        amount,
+                        Information,
+                        date:new Date().getDate(),
+                        user: currentUser
+
+                    }
+                    database.ref("medRequest").push(request);
+
                     navigation.navigate('HomepageMember');
                 }
 
