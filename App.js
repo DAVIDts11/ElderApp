@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
-import firebase from "firebase";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./Screens/LoginScreen";
