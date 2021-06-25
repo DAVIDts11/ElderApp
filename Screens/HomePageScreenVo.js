@@ -6,12 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 const HomepageVolunteer = ({ navigation }) => {
     const { currentUser } = useSelector(state => state.user);
     console.log("store user = ", currentUser);
-    const onPress = () => console.log("pressed");
 
     return (
         <View style={styles.contener} >
             <Text> Hello volunteer,  {currentUser.email}  !!!</Text>
-
+            <View style={styles.row} >
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={()=>navigation.navigate('ViewPage')}
+                >
+                    <Text> view requests </Text>
+                </TouchableOpacity>
+                </View>
         </View>
     )
 }

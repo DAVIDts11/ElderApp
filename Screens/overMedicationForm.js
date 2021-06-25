@@ -36,14 +36,16 @@ const overMedicationForm = ({ navigation }) => {
             <Button
                 style={styles.button}
                 title="Submit"
+               
                 onPress={async () => {
                     console.log("pressed");
+                    let  today = Date.now() ;
                     let request = {
                         name,
                         amount,
                         Information,
-                        date:new Date().getDate(),
-                        user: currentUser
+                        date:today,
+                        user_email: currentUser.email
 
                     }
                     database.ref("medRequest").push(request);

@@ -14,8 +14,7 @@ import HomepageMember  from "./Screens/HomePageScreenMem";
 import MainScreen from "./Screens/MainScreen";
 import pickMeUpForm from "./Screens/pickMeUpForm";
 import overMedicationForm from "./Screens/overMedicationForm";
-
-
+import ViewPage from "./Screens/viewRequests"
 
 
 export default function App() {
@@ -38,6 +37,7 @@ export default function App() {
           <Stack.Screen name="HomepageMember" component={HomepageMember} />
           <Stack.Screen name="pickMeUpForm" component={pickMeUpForm} />
           <Stack.Screen name="overMedicationForm" component={overMedicationForm} />
+          <Stack.Screen name="ViewPage" component={ViewPage} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>
