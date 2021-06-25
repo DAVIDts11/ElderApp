@@ -3,11 +3,13 @@ import { View, TextInput, StyleSheet, Button, Text, Item } from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNUP_ACTION } from "../Store/actions/userAction";
-import database from "../config/fireBaseConfig"
+import database from "../config/fireBaseConfig";
 
 const SignUp = ({ navigation }) => {
   const options = ["Club Member", "Volunteer"];
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [selected, setSelected] = useState("");
   const [showError, setShowError] = useState(false);
@@ -17,7 +19,12 @@ const SignUp = ({ navigation }) => {
 
   return (
     <View style={styles.contener}>
-      { showError ? <Text style={styles.errorMsg}> "User with ehis email is allrady exist !! </Text> : null}
+      {showError ? (
+        <Text style={styles.errorMsg}>
+          {" "}
+          "User with ehis email is allrady exist !!{" "}
+        </Text>
+      ) : null}
 
       <TextInput
         style={styles.textInput}
@@ -31,6 +38,18 @@ const SignUp = ({ navigation }) => {
         secureTextEntry={true}
         value={password}
         onChangeText={(text) => setPassword(text)}
+      />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Enter phone number"
+        value={phone}
+        onChangeText={(text) => setPhone(text)}
+      />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Enter full name"
+        value={name}
+        onChangeText={(text) => setName(text)}
       />
 
       <SelectPicker
@@ -54,12 +73,16 @@ const SignUp = ({ navigation }) => {
           const User = {
             email,
             password,
+            name,
+            phone,
             selected,
           };
           //check if user exists function
-          let error = false ;
-          await database.ref("users")
-            .get().then((snapshot) => {
+          let error = false;
+          await database
+            .ref("users")
+            .get()
+            .then((snapshot) => {
               snapshot.forEach((child) => {
                 if (child.val().email == User.email) {
                   error = true;
@@ -67,27 +90,25 @@ const SignUp = ({ navigation }) => {
                   setShowError(true);
                 }
               });
-            }).catch((error) => {
+            })
+            .catch((error) => {
               console.error(error);
             });
-            if(error == false){
-              database.ref("users").push(User);
-              dispatch(SIGNUP_ACTION.userSignUp(User));
+          if (error == false) {
+            database.ref("users").push(User);
+            dispatch(SIGNUP_ACTION.userSignUp(User));
 
-              console.log(
-                `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
-              );
-              if(User.selected == "Volunteer"){
-                navigation.navigate('HomepageVolunteer');
-              }
-              else {
-                navigation.navigate('HomepageMember');
-              }
+            console.log(
+              `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
+            );
+            if (User.selected == "Volunteer") {
+              navigation.navigate("HomepageVolunteer");
+            } else {
+              navigation.navigate("HomepageMember");
             }
-
+          }
         }}
       />
-
     </View>
   );
 };
@@ -112,8 +133,8 @@ const styles = StyleSheet.create({
     height: 50,
     marginBottom: 30,
   },
-  errorMsg:{
-    color:"red"
+  errorMsg: {
+    color: "red",
   },
   button: {},
 });
