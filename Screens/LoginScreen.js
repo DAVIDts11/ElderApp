@@ -7,6 +7,7 @@ import {
   Platform,
   StyleSheet,
   StatusBar,
+  Alert,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -26,8 +27,7 @@ const Login = ({ navigation }) => {
   });
 
   // remove these initial assignments after testing
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const [showError, setShowError] = useState(false);
 
   const dispatch = useDispatch();
@@ -73,6 +73,21 @@ const Login = ({ navigation }) => {
     });
   };
 
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Incorrect email or password!",
+      "Error logging in",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ],
+      { cancelable: false }
+    );
+
   const handleValidUser = (val) => {
     if (val.trim().length >= 4) {
       setData({
@@ -89,10 +104,11 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar></StatusBar>
+      <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
+
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         <Text styles={styles.text_footer}>Email</Text>
         <View style={styles.action}>
@@ -138,13 +154,6 @@ const Login = ({ navigation }) => {
             )}
           </TouchableOpacity>
         </View>
-        {data.isValidPassword ? null : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>
-              Password must be 8 characters long.
-            </Text>
-          </Animatable.View>
-        )}
 
         <TouchableOpacity>
           <Text style={{ color: "#009387", marginTop: 15 }}>
@@ -171,7 +180,7 @@ const Login = ({ navigation }) => {
                     if (child.val().email == User.email) {
                       if (child.val().password == User.password) {
                         matched = true;
-                        console.log("Wellcom  !!!", child.val().selected);
+                        console.log("Welcome!", child.val().selected);
                         User.selected = child.val().selected;
                         dispatch(LOGIN_ACTION.userLogin(User));
                         console.log(
@@ -190,7 +199,8 @@ const Login = ({ navigation }) => {
                   console.error(error);
                 });
               if (matched == false) {
-                console.log("Incorrect email or passward");
+                console.log("Incorrect email or password");
+                createTwoButtonAlert();
                 setShowError(true);
               }
             }}

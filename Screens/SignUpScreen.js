@@ -11,6 +11,7 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
+  Alert
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
@@ -48,10 +49,22 @@ const SignUp = ({ navigation }) => {
 
   const validRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 
-
+  const createTwoButtonAlertSignUp = () =>
+    Alert.alert(
+      "Email exists already!",
+      "Error signing in",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ],
+      { cancelable: false }
+    );
 
   const textInputChange = (val) => {
-    
     if (val.match(validRegex)) {
       setData({
         ...data,
@@ -128,7 +141,6 @@ const SignUp = ({ navigation }) => {
     });
   };
 
-
   const updateSecureTextEntry = () => {
     setData({
       ...data,
@@ -181,13 +193,12 @@ const SignUp = ({ navigation }) => {
             ) : null}
           </View>
           {data.isValidEmail ? null : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>
-              Email must contain '@' and a domain. Ex- bob@alice.com
-            </Text>
-          </Animatable.View>
-        )}
-
+            <Animatable.View animation="fadeInLeft" duration={500}>
+              <Text style={styles.errorMsg}>
+                Email must contain '@' and a domain. Ex- bob@alice.com
+              </Text>
+            </Animatable.View>
+          )}
 
           <Text
             style={[
@@ -217,12 +228,12 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           {data.isValidPassword ? null : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>
-              Password must be 8 characters long.
-            </Text>
-          </Animatable.View>
-        )}
+            <Animatable.View animation="fadeInLeft" duration={500}>
+              <Text style={styles.errorMsg}>
+                Password must be 8 characters long.
+              </Text>
+            </Animatable.View>
+          )}
           <Text
             style={[
               styles.text_footer,
@@ -272,12 +283,12 @@ const SignUp = ({ navigation }) => {
             ) : null}
           </View>
           {data.isValidPhone ? null : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>
-              Phone number must be 10 numbers long.
-            </Text>
-          </Animatable.View>
-        )}
+            <Animatable.View animation="fadeInLeft" duration={500}>
+              <Text style={styles.errorMsg}>
+                Phone number must be 10 numbers long.
+              </Text>
+            </Animatable.View>
+          )}
 
           <Text
             style={[
@@ -326,10 +337,8 @@ const SignUp = ({ navigation }) => {
                     snapshot.forEach((child) => {
                       if (child.val().email == User.email) {
                         error = true;
-                        console.log(
-                          "User with ehis email is allrady exist  !!!"
-                        );
-                        setShowError(true);
+                        createTwoButtonAlertSignUp();
+                        console.log("User with this email exists!");
                       }
                     });
                   })
@@ -352,8 +361,8 @@ const SignUp = ({ navigation }) => {
               }}
             >
               <LinearGradient
-              colors={["#98bc98", "#91c391"]}
-              style={styles.signIn}
+                colors={["#98bc98", "#91c391"]}
+                style={styles.signIn}
               >
                 <Text
                   style={[
@@ -396,126 +405,6 @@ const SignUp = ({ navigation }) => {
     </View>
   );
 };
-//   return (
-//     <View style={styles.contener}>
-//       {showError ? (
-//         <Text style={styles.errorMsg}>
-//           {" "}
-//           "User with ehis email is allrady exist !!{" "}
-//         </Text>
-//       ) : null}
-
-//       <TextInput
-//         style={styles.textInput}
-//         placeholder="Enter email"
-//         value={email}
-//         onChangeText={(text) => setEmail(text)}
-//       />
-//       <TextInput
-//         style={styles.textInput}
-//         placeholder="Enter password"
-//         secureTextEntry={true}
-//         value={password}
-//         onChangeText={(text) => setPassword(text)}
-//       />
-//       <TextInput
-//         style={styles.textInput}
-//         placeholder="Enter phone number"
-//         value={phone}
-//         onChangeText={(text) => setPhone(text)}
-//       />
-//       <TextInput
-//         style={styles.textInput}
-//         placeholder="Enter full name"
-//         value={name}
-//         onChangeText={(text) => setName(text)}
-//       />
-
-//       <SelectPicker
-//         style={styles.selector}
-//         onValueChange={(value) => {
-//           // Do anything you want with the value.
-//           // For example, save in state.
-//           setSelected(value);
-//         }}
-//         selected={selected}
-//         placeholder="User Type"
-//       >
-//         {Object.values(options).map((val, index) => (
-//           <SelectPicker.Item label={val} value={val} key={index + 5} />
-//         ))}
-//       </SelectPicker>
-//       <Button
-//         style={styles.button}
-//         title="Sign Up"
-// onPress={async () => {
-//   const User = {
-//     email,
-//     password,
-//     name,
-//     phone,
-//     selected,
-//   };
-//   //check if user exists function
-//   let error = false;
-//   await database
-//     .ref("users")
-//     .get()
-//     .then((snapshot) => {
-//       snapshot.forEach((child) => {
-//         if (child.val().email == User.email) {
-//           error = true;
-//           console.log("User with ehis email is allrady exist  !!!");
-//           setShowError(true);
-//         }
-//       });
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-//   if (error == false) {
-//     database.ref("users").push(User);
-//     dispatch(SIGNUP_ACTION.userSignUp(User));
-
-//     console.log(
-//       `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
-//     );
-//     if (User.selected == "Volunteer") {
-//       navigation.navigate("HomepageVolunteer");
-//     } else {
-//       navigation.navigate("HomepageMember");
-//     }
-//   }
-// }}
-//       />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   contener: {
-//     flex: 1,
-//     alignItems: "center",
-//     justifyContent: "center",
-//     paddingTop: Platform.OS === "android" ? 25 : 0,
-//   },
-//   textInput: {
-//     backgroundColor: "cornsilk",
-//     width: 250,
-//     height: 50,
-//     marginBottom: 30,
-//   },
-//   selector: {
-//     backgroundColor: "cornsilk",
-//     width: 250,
-//     height: 50,
-//     marginBottom: 30,
-//   },
-//   errorMsg: {
-//     color: "red",
-//   },
-//   button: {},
-// });
 
 export default SignUp;
 
