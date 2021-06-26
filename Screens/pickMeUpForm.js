@@ -12,7 +12,6 @@ import {
 import database from "../config/fireBaseConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
-import * as Animatable from "react-native-animatable";
 
 const pickMeUpForm = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -46,7 +45,7 @@ const pickMeUpForm = ({ navigation }) => {
         <Text style={styles.text_header}>Give me a Ride!</Text>
       </View>
 
-      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer} animation="fadeInUpBig">
         <Text
           style={[
             styles.text_footer,
@@ -161,7 +160,7 @@ const pickMeUpForm = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-      </Animatable.View>
+      </View>
     </View>
   );
 };

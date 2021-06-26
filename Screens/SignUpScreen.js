@@ -13,7 +13,6 @@ import {
   StatusBar,
   Alert
 } from "react-native";
-import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
@@ -175,7 +174,7 @@ const SignUp = ({ navigation }) => {
       <View style={styles.header}>
         <Text style={styles.text_header}>Register Now!</Text>
       </View>
-      <Animatable.View animation="fadeInUpBig" style={styles.footer}>
+      <View animation="fadeInUpBig" style={styles.footer}>
         <ScrollView>
           <Text style={styles.text_footer}>Email</Text>
           <View style={styles.action}>
@@ -187,17 +186,17 @@ const SignUp = ({ navigation }) => {
               onChangeText={(val) => textInputChange(val)}
             />
             {data.check_textInputChange ? (
-              <Animatable.View animation="bounceIn">
+              <View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
-              </Animatable.View>
+              </View>
             ) : null}
           </View>
           {data.isValidEmail ? null : (
-            <Animatable.View animation="fadeInLeft" duration={500}>
+            <View animation="fadeInLeft" duration={500}>
               <Text style={styles.errorMsg}>
                 Email must contain '@' and a domain. Ex- bob@alice.com
               </Text>
-            </Animatable.View>
+            </View>
           )}
 
           <Text
@@ -228,11 +227,11 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           {data.isValidPassword ? null : (
-            <Animatable.View animation="fadeInLeft" duration={500}>
+            <View animation="fadeInLeft" duration={500}>
               <Text style={styles.errorMsg}>
                 Password must be 8 characters long.
               </Text>
-            </Animatable.View>
+            </View>
           )}
           <Text
             style={[
@@ -253,9 +252,9 @@ const SignUp = ({ navigation }) => {
               onChangeText={(val) => nameInputChange(val)}
             />
             {data.check_nameInputChange ? (
-              <Animatable.View animation="bounceIn">
+              <View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
-              </Animatable.View>
+              </View>
             ) : null}
           </View>
           <Text
@@ -277,17 +276,17 @@ const SignUp = ({ navigation }) => {
               onChangeText={(val) => handlePhoneChange(val)}
             />
             {data.check_handlePhoneChange ? (
-              <Animatable.View animation="bounceIn">
+              <View animation="bounceIn">
                 <Feather name="check-circle" color="green" size={20} />
-              </Animatable.View>
+              </View>
             ) : null}
           </View>
           {data.isValidPhone ? null : (
-            <Animatable.View animation="fadeInLeft" duration={500}>
+            <View animation="fadeInLeft" duration={500}>
               <Text style={styles.errorMsg}>
                 Phone number must be 10 numbers long.
               </Text>
-            </Animatable.View>
+            </View>
           )}
 
           <Text
@@ -401,7 +400,7 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </Animatable.View>
+      </View>
     </View>
   );
 };

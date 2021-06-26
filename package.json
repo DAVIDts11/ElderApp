@@ -52,5 +52,26 @@
   "devDependencies": {
     "@babel/core": "^7.9.0"
   },
-  "private": true
+  "private": true,
+  "checkSubmission": {
+    "ex": "final-project",
+    "students": [
+      {
+        "id": "316086479",
+        "fullName": "Chen Nahoom",
+        "email": "chen.nahoom@gmail.com"
+      },
+      {
+        "id": "309444065",
+        "fullName": "David Tsibulsky",
+        "email": "tsibulsky.david@gmail.com"
+      }
+    ],
+    "os": "Windows",
+    "device": "iOS",
+    "submissionDate": "27/06/2021",
+    "delay": true,
+    "delayReason": "Not enough time to finish- David had a problem with his computer and couldn't open the app",
+    "comments": ""
+  }
 }

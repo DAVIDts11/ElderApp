@@ -13,8 +13,6 @@ import {
 import database from "../config/fireBaseConfig";
 import Request from "./requestItem";
 import { useSelector } from "react-redux";
-import * as Animatable from "react-native-animatable";
-import { LinearGradient } from "expo-linear-gradient";
 
 export default function ViewPage() {
   const [findingReq, setfindingReq] = useState([]);
@@ -63,7 +61,7 @@ export default function ViewPage() {
         <Text style={styles.text_header}>Requests</Text>
       </View>
 
-      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer} animation="fadeInUpBig">
         <FlatList
           ListEmptyComponent={
             ready ? (
@@ -76,7 +74,7 @@ export default function ViewPage() {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => <Request req={item} />}
         />
-      </Animatable.View>
+      </View>
     </View>
   );
 }

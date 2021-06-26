@@ -23,9 +23,9 @@ const RootStackScreen = ({ navigation }) => (
     <RootStack.Screen name="SignUp" component={SignUpScreen} />
     <RootStack.Screen name="HomepageVolunteer" component={HomepageVolunteer} />
     <RootStack.Screen name="HomepageMember" component={MainTabScreenMember} />
-    <RootStack.Screen name="pickMeUpForm" component={pickMeUpForm} />
-    <RootStack.Screen name="overMedicationForm" component={overMedicationForm}/>
-    <RootStack.Screen name="ViewPage" component={ViewPage} />
+    <RootStack.Screen name="pickMeUpForm" component={MainTabScreenMember} />
+    <RootStack.Screen name="overMedicationForm" component={MainTabScreenMember}/>
+    <RootStack.Screen name="ViewPage" component={MainTabScreenMember} />
   </RootStack.Navigator>
 );
 

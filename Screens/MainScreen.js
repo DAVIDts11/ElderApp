@@ -10,7 +10,6 @@ import {
   Button,
 } from "react-native";
 
-import * as Animatable from "react-native-animatable";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -18,9 +17,9 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const MainScreen = ({ navigation }) => {
   return (
-    <Animatable.View style={styles.container} animation="fadeInUpBig">
+    <View style={styles.container} animation="fadeInUpBig">
       <View style={styles.header}>
-        <Animatable.Image
+        <Image
           animation="bounceIn"
           source={require("../assets/logo.png")}
           style={styles.logo}
@@ -42,7 +41,7 @@ const MainScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </Animatable.View>
+    </View>
   );
 };
 

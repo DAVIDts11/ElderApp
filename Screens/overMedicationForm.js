@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import database from "../config/fireBaseConfig";
 import { useDispatch, useSelector } from "react-redux";
-import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 
 const overMedicationForm = ({ navigation }) => {
@@ -44,7 +43,7 @@ const overMedicationForm = ({ navigation }) => {
         <Text style={styles.text_header}>Request over the counter meds</Text>
       </View>
 
-      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer} animation="fadeInUpBig">
         <Text
           style={[
             styles.text_footer,
@@ -141,7 +140,7 @@ const overMedicationForm = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-      </Animatable.View>
+      </View>
     </View>
   );
 };

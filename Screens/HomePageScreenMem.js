@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 
 const HomepageMember = ({ navigation }) => {
@@ -26,7 +25,7 @@ const HomepageMember = ({ navigation }) => {
         <Text style={styles.text_header}>Hello {currentUser.email}!</Text>
       </View>
 
-      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer} animation="fadeInUpBig">
       
       <TouchableOpacity
             onPress={() => navigation.navigate("Request Meds")}
@@ -118,7 +117,7 @@ const HomepageMember = ({ navigation }) => {
             </Text>
             </TouchableOpacity>
         
-      </Animatable.View>
+      </View>
     </View>
   );
 };

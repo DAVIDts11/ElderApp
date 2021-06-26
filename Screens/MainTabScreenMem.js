@@ -39,7 +39,7 @@ const MainTabScreenMember = () => (
           tabBarLabel: 'PickUp',
           tabBarColor: '#A0CFEF',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
+            <Icon name="car" color={color} size={26} />
           ),
         }}
       />
@@ -50,18 +50,18 @@ const MainTabScreenMember = () => (
           tabBarLabel: 'Meds',
           tabBarColor: '#ECBDC7',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-person" color={color} size={26} />
+            <Icon name="medkit" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="View Requests"
+        name="ViewPage"
         component={ViewPage}
         options={{
           tabBarLabel: 'Explore',
           tabBarColor: '#F0CC99',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-aperture" color={color} size={26} />
+            <Icon name="clipboard" color={color} size={26} />
           ),
         }}
       />

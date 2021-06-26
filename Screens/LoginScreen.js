@@ -9,7 +9,6 @@ import {
   StatusBar,
   Alert,
 } from "react-native";
-import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import { LinearGradient } from "expo-linear-gradient";
@@ -109,7 +108,7 @@ const Login = ({ navigation }) => {
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
 
-      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer} animation="fadeInUpBig">
         <Text styles={styles.text_footer}>Email</Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="black" size={20} />
@@ -121,9 +120,9 @@ const Login = ({ navigation }) => {
             onChangeText={(val) => textInputChange(val)}
           />
           {data.check_textInputChange ? (
-            <Animatable.View animation="bounceIn">
+            <View animation="bounceIn">
               <Feather name="check-circle" color="green" size={20} />
-            </Animatable.View>
+            </View>
           ) : null}
         </View>
         <Text
@@ -245,7 +244,7 @@ const Login = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </Animatable.View>
+      </View>
     </View>
   );
 };
