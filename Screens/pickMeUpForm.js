@@ -141,7 +141,7 @@ const pickMeUpForm = ({ navigation }) => {
               };
               database.ref("pickMeUpRequest").push(pickUprequest);
               createTwoButtonAlert();
-              navigation.navigate("HomepageMember");
+              navigation.navigate("Home");
             }}
           >
             <LinearGradient
@@ -165,6 +165,8 @@ const pickMeUpForm = ({ navigation }) => {
     </View>
   );
 };
+
+
 
 export default pickMeUpForm;
 

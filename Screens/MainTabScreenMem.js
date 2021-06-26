@@ -26,7 +26,7 @@ const MainTabScreenMember = () => (
         component={HomepageMember}
         options={{
           tabBarLabel: 'Home',
-          tabBarColor: '#009387',
+          tabBarColor: '#DCDCDA',
           tabBarIcon: ({ color }) => (
             <Icon name="ios-home" color={color} size={26} />
           ),
@@ -59,7 +59,7 @@ const MainTabScreenMember = () => (
         component={ViewPage}
         options={{
           tabBarLabel: 'Explore',
-          tabBarColor: '#E2DBF7',
+          tabBarColor: '#F0CC99',
           tabBarIcon: ({ color }) => (
             <Icon name="ios-aperture" color={color} size={26} />
           ),

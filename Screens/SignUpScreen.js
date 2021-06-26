@@ -324,7 +324,7 @@ const SignUp = ({ navigation }) => {
                 const User = {
                   email: data.email,
                   password: data.password,
-                  selected: data.selected,
+                  selected: selected,
                   phone: data.phone,
                   name: data.name,
                 };

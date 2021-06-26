@@ -60,7 +60,7 @@ export default function ViewPage() {
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
 
       <View style={styles.header}>
-        <Text style={styles.text_header}>Give me a Ride!</Text>
+        <Text style={styles.text_header}>Requests</Text>
       </View>
 
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
@@ -84,7 +84,7 @@ export default function ViewPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E2DBF7",
+    backgroundColor: "#F0CC99",
   },
   header: {
     flex: 1,

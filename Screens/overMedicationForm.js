@@ -121,7 +121,7 @@ const overMedicationForm = ({ navigation }) => {
               };
               database.ref("medRequest").push(request);
               createTwoButtonAlertOTC();
-              navigation.navigate("HomepageMember");
+              navigation.navigate("Home");
             }}
           >
               <LinearGradient
