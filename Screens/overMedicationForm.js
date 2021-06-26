@@ -12,9 +12,7 @@ import {
 import database from "../config/fireBaseConfig";
 import { useDispatch, useSelector } from "react-redux";
 import * as Animatable from "react-native-animatable";
-import Feather from "react-native-vector-icons/Feather";
 import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const overMedicationForm = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -22,12 +20,7 @@ const overMedicationForm = ({ navigation }) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [Information, setInformation] = useState("");
-  const [data, setData] = useState({
-    name: "",
-    amount: "",
-    information: "",
-  });
-
+ 
   const createTwoButtonAlertOTC = () =>
     Alert.alert(
       "Success!",
