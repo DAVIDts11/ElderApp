@@ -1,9 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, ActivityIndicator, FlatList, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  TextInput,
+  StatusBar,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import database from "../config/fireBaseConfig";
-import Request from "./requestItem"
+import Request from "./requestItem";
 import { useSelector } from "react-redux";
-
+import * as Animatable from "react-native-animatable";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ViewPage() {
   const [findingReq, setfindingReq] = useState([]);
@@ -13,20 +24,24 @@ export default function ViewPage() {
   useEffect(() => {
     async function fetchData() {
       let list = [];
-      await database.ref("medRequest")
+      await database
+        .ref("medRequest")
         .get()
-        .then((snapshot) => { snapshot.forEach((child) => { list.push({ childKey: child.key, childObj: child.val() }) }) })
-      if (currentUser.selected == "Club Member"){
+        .then((snapshot) => {
+          snapshot.forEach((child) => {
+            list.push({ childKey: child.key, childObj: child.val() });
+          });
+        });
+      if (currentUser.selected == "Club Member") {
         let myMedRequest = [];
-        for (i in list){
-          console.log("item email : == > " , list[i]);
-          if (list[i].childObj.user_email == currentUser.email){
-            myMedRequest.push(list[i])
+        for (i in list) {
+          console.log("item email : == > ", list[i]);
+          if (list[i].childObj.user_email == currentUser.email) {
+            myMedRequest.push(list[i]);
           }
         }
         setfindingReq(myMedRequest);
-      }
-      else {
+      } else {
         setfindingReq(list);
       }
       //snapshot.toJSON().then((data)=>{console.log("data ===> " ,data ); setfindingReq(data);})
@@ -35,35 +50,107 @@ export default function ViewPage() {
     }
     fetchData();
 
-
     return () => {
       // cleanup
-    }
-  }, [])
+    };
+  }, []);
 
   return (
-    <View style={styles.contener}>
+    <View style={styles.container}>
+      <StatusBar backgroundColor="#009387" barStyle="light-content" />
 
-      <Text>list requests </Text>
-      <FlatList style={styles.flatListReq}
-        ListEmptyComponent={ready ? <ActivityIndicator size="large" color="blue" /> : <Text>No Results</Text>}
-        data={findingReq}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Request req={item} />} />
+      <View style={styles.header}>
+        <Text style={styles.text_header}>Give me a Ride!</Text>
+      </View>
 
+      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+        <FlatList
+          ListEmptyComponent={
+            ready ? (
+              <ActivityIndicator size="large" color="blue" />
+            ) : (
+              <Text>No Results</Text>
+            )
+          }
+          data={findingReq}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <Request req={item} />}
+        />
+      </Animatable.View>
     </View>
-  )
+  );
 }
 
-
 const styles = StyleSheet.create({
-  contener: {
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: "space-between",
+    backgroundColor: "#E2DBF7",
   },
-  flatListReq: {
-    flex: 1
-  }
-
-})
+  header: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingHorizontal: 20,
+    paddingBottom: 50,
+  },
+  footer: {
+    flex: 3,
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  },
+  text_header: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
+  },
+  text_footer: {
+    color: "#05375a",
+    fontSize: 18,
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+  },
+  actionError: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#FF0000",
+    paddingBottom: 5,
+  },
+  textInput: {
+    flex: 1,
+    marginTop: Platform.OS === "ios" ? 0 : -12,
+    paddingLeft: 10,
+    color: "#05375a",
+  },
+  errorMsg: {
+    color: "#FF0000",
+    fontSize: 14,
+  },
+  button: {
+    alignItems: "center",
+    marginTop: 50,
+  },
+  signIn: {
+    width: "100%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+  },
+  textSign: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  submitButton: {
+    color: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 30,
+  },
+});

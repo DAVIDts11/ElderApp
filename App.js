@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "./Store/store";
 
 import { NavigationContainer } from "@react-navigation/native";
+import MainTabScreen from "./Screens/MainTabScreenMem";
 import RootStackScreen from "./Screens/RootStackScreen";
 
 export default function App() {

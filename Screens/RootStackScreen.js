@@ -10,6 +10,8 @@ import HomepageMember from "./HomePageScreenMem";
 import pickMeUpForm from "./pickMeUpForm";
 import overMedicationForm from "./overMedicationForm";
 import ViewPage from "./viewRequests";
+import { Tab } from "react-native-elements";
+import MainTabScreenMember from "./MainTabScreenMem";
 
 
 const RootStack = createStackNavigator();
@@ -20,7 +22,7 @@ const RootStackScreen = ({ navigation }) => (
     <RootStack.Screen name="Login" component={LoginScreen} />
     <RootStack.Screen name="SignUp" component={SignUpScreen} />
     <RootStack.Screen name="HomepageVolunteer" component={HomepageVolunteer} />
-    <RootStack.Screen name="HomepageMember" component={HomepageMember} />
+    <RootStack.Screen name="HomepageMember" component={MainTabScreenMember} />
     <RootStack.Screen name="pickMeUpForm" component={pickMeUpForm} />
     <RootStack.Screen name="overMedicationForm" component={overMedicationForm}/>
     <RootStack.Screen name="ViewPage" component={ViewPage} />
