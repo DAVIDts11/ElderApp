@@ -9,7 +9,7 @@ const HomepageMember = ({ navigation }) => {
     const onPress=()=>console.log("pressed");
     return (
         <View style={styles.contener} >
-            <Text>Hello member {currentUser.email}  !!</Text>
+            <Text>Hello {currentUser.name}</Text>
             <View style={styles.row} >
                 <TouchableOpacity
                     style={styles.button}
