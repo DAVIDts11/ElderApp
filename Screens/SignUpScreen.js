@@ -1,36 +1,34 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  Button,
   TouchableOpacity,
-  Dimensions,
   TextInput,
   Platform,
   StyleSheet,
   ScrollView,
   StatusBar,
-  Alert
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import SelectPicker from "react-native-form-select-picker";
-import { useDispatch, useSelector } from "react-redux";
-import { SIGNUP_ACTION } from "../Store/actions/userAction";
-import database from "../config/fireBaseConfig";
+  Alert,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
+import SelectPicker from 'react-native-form-select-picker';
+import { useDispatch } from 'react-redux';
+import { SIGNUP_ACTION } from '../Store/actions/userAction';
+import database from '../config/fireBaseConfig';
 
 const SignUp = ({ navigation }) => {
-  const options = ["Club Member", "Volunteer"];
+  const options = ['Club Member', 'Volunteer'];
 
   const [data, setData] = useState({
-    email: "",
-    password: "",
-    confirm_password: "",
-    name: "",
-    phone: "",
-    selected: "",
+    email: '',
+    password: '',
+    confirm_password: '',
+    name: '',
+    phone: '',
+    selected: '',
     check_textInputChange: false,
     check_nameInputChange: false,
     check_handlePhoneChange: false,
@@ -38,11 +36,10 @@ const SignUp = ({ navigation }) => {
     confirm_secureTextEntry: true,
   });
 
-  const [email, setEmail] = useState("");
+  const [email] = useState('');
 
-  const [password, setPassword] = useState("");
-  const [selected, setSelected] = useState("");
-  const [showError, setShowError] = useState(false);
+  const [password] = useState('');
+  const [selected, setSelected] = useState('');
 
   const dispatch = useDispatch();
 
@@ -50,17 +47,17 @@ const SignUp = ({ navigation }) => {
 
   const createTwoButtonAlertSignUp = () =>
     Alert.alert(
-      "Email exists already!",
-      "Error signing in",
+      'Email exists already!',
+      'Error signing in',
       [
         {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
 
   const textInputChange = (val) => {
@@ -133,13 +130,6 @@ const SignUp = ({ navigation }) => {
     }
   };
 
-  const handleConfirmPasswordChange = (val) => {
-    setData({
-      ...data,
-      confirm_password: val,
-    });
-  };
-
   const updateSecureTextEntry = () => {
     setData({
       ...data,
@@ -174,7 +164,7 @@ const SignUp = ({ navigation }) => {
       <View style={styles.header}>
         <Text style={styles.text_header}>Register Now!</Text>
       </View>
-      <View animation="fadeInUpBig" style={styles.footer}>
+      <View style={styles.footer}>
         <ScrollView>
           <Text style={styles.text_footer}>Email</Text>
           <View style={styles.action}>
@@ -186,13 +176,13 @@ const SignUp = ({ navigation }) => {
               onChangeText={(val) => textInputChange(val)}
             />
             {data.check_textInputChange ? (
-              <View animation="bounceIn">
+              <View>
                 <Feather name="check-circle" color="green" size={20} />
               </View>
             ) : null}
           </View>
           {data.isValidEmail ? null : (
-            <View animation="fadeInLeft" duration={500}>
+            <View>
               <Text style={styles.errorMsg}>
                 Email must contain '@' and a domain. Ex- bob@alice.com
               </Text>
@@ -227,10 +217,8 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           {data.isValidPassword ? null : (
-            <View animation="fadeInLeft" duration={500}>
-              <Text style={styles.errorMsg}>
-                Password must be 8 characters long.
-              </Text>
+            <View>
+              <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
             </View>
           )}
           <Text
@@ -252,7 +240,7 @@ const SignUp = ({ navigation }) => {
               onChangeText={(val) => nameInputChange(val)}
             />
             {data.check_nameInputChange ? (
-              <View animation="bounceIn">
+              <View>
                 <Feather name="check-circle" color="green" size={20} />
               </View>
             ) : null}
@@ -275,17 +263,10 @@ const SignUp = ({ navigation }) => {
               autoCapitalize="none"
               onChangeText={(val) => handlePhoneChange(val)}
             />
-            {data.check_handlePhoneChange ? (
-              <View animation="bounceIn">
-                <Feather name="check-circle" color="green" size={20} />
-              </View>
-            ) : null}
           </View>
           {data.isValidPhone ? null : (
-            <View animation="fadeInLeft" duration={500}>
-              <Text style={styles.errorMsg}>
-                Phone number must be 10 numbers long.
-              </Text>
+            <View>
+              <Text style={styles.errorMsg}>Phone number must be 10 numbers long.</Text>
             </View>
           )}
 
@@ -314,7 +295,7 @@ const SignUp = ({ navigation }) => {
               <SelectPicker.Item label={val} value={val} key={index + 5} />
             ))}
           </SelectPicker>
-          <View style={styles.action}></View>
+          <View style={styles.action} />
 
           <View style={styles.button}>
             <TouchableOpacity
@@ -330,14 +311,14 @@ const SignUp = ({ navigation }) => {
                 //check if user exists function
                 let error = false;
                 await database
-                  .ref("users")
+                  .ref('users')
                   .get()
                   .then((snapshot) => {
                     snapshot.forEach((child) => {
                       if (child.val().email == User.email) {
                         error = true;
                         createTwoButtonAlertSignUp();
-                        console.log("User with this email exists!");
+                        console.log('User with this email exists!');
                       }
                     });
                   })
@@ -345,29 +326,26 @@ const SignUp = ({ navigation }) => {
                     console.error(error);
                   });
                 if (error == false) {
-                  database.ref("users").push(User);
+                  database.ref('users').push(User);
                   dispatch(SIGNUP_ACTION.userSignUp(User));
 
                   console.log(
-                    `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
+                    `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`,
                   );
-                  if (User.selected == "Volunteer") {
-                    navigation.navigate("HomepageVolunteer");
+                  if (User.selected == 'Volunteer') {
+                    navigation.navigate('HomepageVolunteer');
                   } else {
-                    navigation.navigate("HomepageMember");
+                    navigation.navigate('HomepageMember');
                   }
                 }
               }}
             >
-              <LinearGradient
-                colors={["#98bc98", "#91c391"]}
-                style={styles.signIn}
-              >
+              <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
                 <Text
                   style={[
                     styles.textSign,
                     {
-                      color: "#fff",
+                      color: '#fff',
                     },
                   ]}
                 >
@@ -381,7 +359,7 @@ const SignUp = ({ navigation }) => {
               style={[
                 styles.signIn,
                 {
-                  borderColor: "#60a860",
+                  borderColor: '#60a860',
                   borderWidth: 1,
                   marginTop: 15,
                 },
@@ -391,7 +369,7 @@ const SignUp = ({ navigation }) => {
                 style={[
                   styles.textSign,
                   {
-                    color: "#60a860",
+                    color: '#60a860',
                   },
                 ]}
               >
@@ -410,69 +388,69 @@ export default SignUp;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B2D4B2",
+    backgroundColor: '#B2D4B2',
   },
   header: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50,
   },
   footer: {
-    flex: Platform.OS === "ios" ? 3 : 5,
-    backgroundColor: "#fff",
+    flex: Platform.OS === 'ios' ? 3 : 5,
+    backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 30,
   },
   text_footer: {
-    color: "#05375a",
+    color: '#05375a',
     fontSize: 18,
   },
   errorMsg: {
-    color: "#FF0000",
+    color: '#FF0000',
     fontSize: 14,
   },
   action: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
+    borderBottomColor: '#f2f2f2',
     paddingBottom: 5,
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
+    marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
-    color: "#05375a",
+    color: '#05375a',
   },
   button: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 50,
   },
   signIn: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 10,
   },
   textSign: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   textPrivate: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 20,
   },
   color_textPrivate: {
-    color: "grey",
+    color: 'grey',
   },
 });

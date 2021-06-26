@@ -1,18 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from '@react-navigation/stack';
 
-import MainScreen from "./MainScreen";
-import LoginScreen from "./LoginScreen";
-import SignUpScreen from "./SignUpScreen";
-import HomepageVolunteer from "./HomePageScreenVo";
-import HomepageMember from "./HomePageScreenMem";
-import pickMeUpForm from "./pickMeUpForm";
-import overMedicationForm from "./overMedicationForm";
-import ViewPage from "./viewRequests";
-import { Tab } from "react-native-elements";
-import MainTabScreenMember from "./MainTabScreenMem";
-
+import MainScreen from './MainScreen';
+import LoginScreen from './LoginScreen';
+import SignUpScreen from './SignUpScreen';
+import HomepageVolunteer from './HomePageScreenVo';
+import MainTabScreenMember from './MainTabScreenMem';
 
 const RootStack = createStackNavigator();
 
@@ -24,7 +18,7 @@ const RootStackScreen = ({ navigation }) => (
     <RootStack.Screen name="HomepageVolunteer" component={HomepageVolunteer} />
     <RootStack.Screen name="HomepageMember" component={MainTabScreenMember} />
     <RootStack.Screen name="pickMeUpForm" component={MainTabScreenMember} />
-    <RootStack.Screen name="overMedicationForm" component={MainTabScreenMember}/>
+    <RootStack.Screen name="overMedicationForm" component={MainTabScreenMember} />
     <RootStack.Screen name="ViewPage" component={MainTabScreenMember} />
   </RootStack.Navigator>
 );

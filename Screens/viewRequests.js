@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  TextInput,
-  StatusBar,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
-import database from "../config/fireBaseConfig";
-import Request from "./requestItem";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { View, Text, ActivityIndicator, FlatList, StyleSheet, StatusBar } from 'react-native';
+import database from '../config/fireBaseConfig';
+import Request from './requestItem';
+import { useSelector } from 'react-redux';
 
 export default function ViewPage() {
   const [findingReq, setfindingReq] = useState([]);
@@ -23,18 +13,18 @@ export default function ViewPage() {
     async function fetchData() {
       let list = [];
       await database
-        .ref("medRequest")
+        .ref('medRequest')
         .get()
         .then((snapshot) => {
           snapshot.forEach((child) => {
             list.push({ childKey: child.key, childObj: child.val() });
           });
         });
-      if (currentUser.selected == "Club Member") {
+      if (currentUser.selected === 'Club Member') {
         let myMedRequest = [];
         for (i in list) {
-          console.log("item email : == > ", list[i]);
-          if (list[i].childObj.user_email == currentUser.email) {
+          console.log('item email : == > ', list[i]);
+          if (list[i].childObj.user_email === currentUser.email) {
             myMedRequest.push(list[i]);
           }
         }
@@ -44,7 +34,7 @@ export default function ViewPage() {
       }
       //snapshot.toJSON().then((data)=>{console.log("data ===> " ,data ); setfindingReq(data);})
       setready(true);
-      console.log("list === ", list);
+      console.log('list === ', list);
     }
     fetchData();
 
@@ -61,14 +51,10 @@ export default function ViewPage() {
         <Text style={styles.text_header}>Requests</Text>
       </View>
 
-      <View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer}>
         <FlatList
           ListEmptyComponent={
-            ready ? (
-              <ActivityIndicator size="large" color="blue" />
-            ) : (
-              <Text>No Results</Text>
-            )
+            ready ? <ActivityIndicator size="large" color="blue" /> : <Text>No Results</Text>
           }
           data={findingReq}
           keyExtractor={(item, index) => index.toString()}
@@ -82,73 +68,72 @@ export default function ViewPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F0CC99",
+    backgroundColor: '#F0CC99',
   },
   header: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50,
   },
   footer: {
     flex: 3,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 30,
   },
   text_footer: {
-    color: "#05375a",
+    color: '#05375a',
     fontSize: 18,
   },
   action: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
+    borderBottomColor: '#f2f2f2',
   },
   actionError: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#FF0000",
+    borderBottomColor: '#FF0000',
     paddingBottom: 5,
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
     paddingLeft: 10,
-    color: "#05375a",
+    color: '#05375a',
   },
   errorMsg: {
-    color: "#FF0000",
+    color: '#FF0000',
     fontSize: 14,
   },
   button: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 50,
   },
   signIn: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 10,
   },
   textSign: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   submitButton: {
-    color: "black",
-    justifyContent: "center",
-    alignItems: "center",
+    color: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 30,
   },
 });

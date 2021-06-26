@@ -1,38 +1,37 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
-  Button,
   Alert,
   StatusBar,
-  TouchableOpacity
-} from "react-native";
-import database from "../config/fireBaseConfig";
-import { useDispatch, useSelector } from "react-redux";
-import { LinearGradient } from "expo-linear-gradient";
+  TouchableOpacity,
+} from 'react-native';
+import database from '../config/fireBaseConfig';
+import { useSelector } from 'react-redux';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const overMedicationForm = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log("current user = ", currentUser);
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [Information, setInformation] = useState("");
- 
+  console.log('current user = ', currentUser);
+  const [name, setName] = useState('');
+  const [amount, setAmount] = useState('');
+  const [Information, setInformation] = useState('');
+
   const createTwoButtonAlertOTC = () =>
     Alert.alert(
-      "Success!",
-      "You have submitted a request for OTC Medication",
+      'Success!',
+      'You have submitted a request for OTC Medication',
       [
         {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
 
   return (
@@ -43,7 +42,7 @@ const overMedicationForm = ({ navigation }) => {
         <Text style={styles.text_header}>Request over the counter meds</Text>
       </View>
 
-      <View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer}>
         <Text
           style={[
             styles.text_footer,
@@ -109,7 +108,7 @@ const overMedicationForm = ({ navigation }) => {
           <TouchableOpacity
             style={styles.signIn}
             onPress={async () => {
-              console.log("pressed");
+              console.log('pressed');
               let today = Date.now();
               let request = {
                 name,
@@ -118,20 +117,17 @@ const overMedicationForm = ({ navigation }) => {
                 date: today,
                 user_email: currentUser.email,
               };
-              database.ref("medRequest").push(request);
+              database.ref('medRequest').push(request);
               createTwoButtonAlertOTC();
-              navigation.navigate("Home");
+              navigation.navigate('Home');
             }}
           >
-              <LinearGradient
-              colors={["#98bc98", "#91c391"]}
-              style={styles.signIn}
-            >
+            <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
               <Text
                 style={[
                   styles.textSign,
                   {
-                    color: "#fff",
+                    color: '#fff',
                   },
                 ]}
               >
@@ -148,73 +144,72 @@ const overMedicationForm = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ECBDC7",
+    backgroundColor: '#ECBDC7',
   },
   header: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50,
   },
   footer: {
     flex: 3,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 30,
   },
   text_footer: {
-    color: "#05375a",
+    color: '#05375a',
     fontSize: 18,
   },
   action: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
+    borderBottomColor: '#f2f2f2',
   },
   actionError: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#FF0000",
+    borderBottomColor: '#FF0000',
     paddingBottom: 5,
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
     paddingLeft: 10,
-    color: "#05375a",
+    color: '#05375a',
   },
   errorMsg: {
-    color: "#FF0000",
+    color: '#FF0000',
     fontSize: 14,
   },
   button: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 50,
   },
   signIn: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 10,
   },
   textSign: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   submitButton: {
-    color: "black",
-    justifyContent: "center",
-    alignItems: "center",
+    color: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 30,
   },
 });

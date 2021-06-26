@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,19 +8,19 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
-} from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import { LinearGradient } from "expo-linear-gradient";
+} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
+import { LinearGradient } from 'expo-linear-gradient';
 
-import { useDispatch, useSelector } from "react-redux";
-import { LOGIN_ACTION } from "../Store/actions/userAction";
-import database from "../config/fireBaseConfig";
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN_ACTION } from '../Store/actions/userAction';
+import database from '../config/fireBaseConfig';
 
 const Login = ({ navigation }) => {
   const [data, setData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     check_textInputChange: false,
     secureTextEntry: true,
   });
@@ -74,17 +74,17 @@ const Login = ({ navigation }) => {
 
   const createTwoButtonAlert = () =>
     Alert.alert(
-      "Incorrect email or password!",
-      "Error logging in",
+      'Incorrect email or password!',
+      'Error logging in',
       [
         {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
 
   const handleValidUser = (val) => {
@@ -108,7 +108,7 @@ const Login = ({ navigation }) => {
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
 
-      <View style={styles.footer} animation="fadeInUpBig">
+      <View style={styles.footer}>
         <Text styles={styles.text_footer}>Email</Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="black" size={20} />
@@ -120,7 +120,7 @@ const Login = ({ navigation }) => {
             onChangeText={(val) => textInputChange(val)}
           />
           {data.check_textInputChange ? (
-            <View animation="bounceIn">
+            <View>
               <Feather name="check-circle" color="green" size={20} />
             </View>
           ) : null}
@@ -155,9 +155,7 @@ const Login = ({ navigation }) => {
         </View>
 
         <TouchableOpacity>
-          <Text style={{ color: "#009387", marginTop: 15 }}>
-            Forgot password?
-          </Text>
+          <Text style={{ color: '#009387', marginTop: 15 }}>Forgot password?</Text>
         </TouchableOpacity>
 
         <View style={styles.button}>
@@ -167,28 +165,28 @@ const Login = ({ navigation }) => {
               let User = {
                 email: data.email,
                 password: data.password,
-                selected: "",
+                selected: '',
               };
               let matched = false;
               //check if user exists function
               await database
-                .ref("users")
+                .ref('users')
                 .get()
                 .then((snapshot) => {
                   snapshot.forEach((child) => {
                     if (child.val().email == User.email) {
                       if (child.val().password == User.password) {
                         matched = true;
-                        console.log("Welcome!", child.val().selected);
+                        console.log('Welcome!', child.val().selected);
                         User.selected = child.val().selected;
                         dispatch(LOGIN_ACTION.userLogin(User));
                         console.log(
-                          `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `
+                          `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `,
                         );
-                        if (child.val().selected == "Volunteer") {
-                          navigation.navigate("HomepageVolunteer");
+                        if (child.val().selected == 'Volunteer') {
+                          navigation.navigate('HomepageVolunteer');
                         } else {
-                          navigation.navigate("HomepageMember");
+                          navigation.navigate('HomepageMember');
                         }
                       }
                     }
@@ -198,21 +196,18 @@ const Login = ({ navigation }) => {
                   console.error(error);
                 });
               if (matched == false) {
-                console.log("Incorrect email or password");
+                console.log('Incorrect email or password');
                 createTwoButtonAlert();
                 setShowError(true);
               }
             }}
           >
-            <LinearGradient
-              colors={["#98bc98", "#91c391"]}
-              style={styles.signIn}
-            >
+            <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
               <Text
                 style={[
                   styles.textSign,
                   {
-                    color: "#fff",
+                    color: '#fff',
                   },
                 ]}
               >
@@ -222,11 +217,11 @@ const Login = ({ navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("SignUp")}
+            onPress={() => navigation.navigate('SignUp')}
             style={[
               styles.signIn,
               {
-                borderColor: "#009387",
+                borderColor: '#009387',
                 borderWidth: 1,
                 marginTop: 15,
               },
@@ -236,7 +231,7 @@ const Login = ({ navigation }) => {
               style={[
                 styles.textSign,
                 {
-                  color: "#009387",
+                  color: '#009387',
                 },
               ]}
             >
@@ -254,73 +249,73 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B2D4B2",
+    backgroundColor: '#B2D4B2',
   },
   header: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50,
   },
   footer: {
     flex: 3,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 30,
   },
   text_footer: {
-    color: "#05375a",
+    color: '#05375a',
     fontSize: 18,
   },
   action: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
+    borderBottomColor: '#f2f2f2',
   },
   actionError: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#FF0000",
+    borderBottomColor: '#FF0000',
     paddingBottom: 5,
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
+    marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
-    color: "#05375a",
+    color: '#05375a',
   },
   errorMsg: {
-    color: "#FF0000",
+    color: '#FF0000',
     fontSize: 14,
   },
   button: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 50,
   },
   signIn: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 10,
   },
   textSign: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   submitButton: {
-    color: "black",
-    justifyContent: "center",
-    alignItems: "center",
+    color: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 30,
   },
 });
