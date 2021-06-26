@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, ActivityIndicator, FlatList, StyleSheet } from 'react-native'
 import database from "../config/fireBaseConfig";
 import Request from "./requestItem"
+import { useSelector } from "react-redux";
 
 
 export default function ViewPage() {
   const [findingReq, setfindingReq] = useState([]);
   const [ready, setready] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     async function fetchData() {
@@ -14,14 +16,22 @@ export default function ViewPage() {
       await database.ref("medRequest")
         .get()
         .then((snapshot) => { snapshot.forEach((child) => { list.push({ childKey: child.key, childObj: child.val() }) }) })
-
+      if (currentUser.selected == "Club Member"){
+        let myMedRequest = [];
+        for (i in list){
+          console.log("item email : == > " , list[i]);
+          if (list[i].childObj.user_email == currentUser.email){
+            myMedRequest.push(list[i])
+          }
+        }
+        setfindingReq(myMedRequest);
+      }
+      else {
+        setfindingReq(list);
+      }
       //snapshot.toJSON().then((data)=>{console.log("data ===> " ,data ); setfindingReq(data);})
-      setfindingReq(list);
       setready(true);
       console.log("list === ", list);
-      console.log("  !!!!  list  Item  === ", list[0].childObj.name);
-
-
     }
     fetchData();
 

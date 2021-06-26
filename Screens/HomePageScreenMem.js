@@ -25,9 +25,9 @@ const HomepageMember = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={onPress}
+                    onPress={()=>navigation.navigate('ViewPage')}
                 >
-                    <Text> lala3   </Text>
+                    <Text> view my  Requests  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
