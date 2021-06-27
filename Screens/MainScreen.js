@@ -10,11 +10,7 @@ const MainScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.logo}
-          resizeMode="stretch"
-        />
+        <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="stretch" />
       </View>
       <View style={styles.footer}>
         <Text style={styles.title}>Stay connected with everyone!</Text>

@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomepageVolunteer from './HomePageScreenVo';
 import ViewPage from './viewRequests';
 import ViewPickUp from './viewPickUpRequests';
-import MainScreen from './MainScreen';
 import Empty from './EmptyPage';
 
 const TabsVol = createMaterialBottomTabNavigator();

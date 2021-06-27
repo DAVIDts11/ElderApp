@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Platform,
   StyleSheet,
   StatusBar,
   Alert,
@@ -13,7 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LOGIN_ACTION } from '../Store/actions/userAction';
 import database from '../config/fireBaseConfig';
 
@@ -84,7 +83,7 @@ const Login = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false },
+      { cancelable: false }
     );
 
   const handleValidUser = (val) => {
@@ -174,16 +173,16 @@ const Login = ({ navigation }) => {
                 .get()
                 .then((snapshot) => {
                   snapshot.forEach((child) => {
-                    if (child.val().email == User.email) {
-                      if (child.val().password == User.password) {
+                    if (child.val().email === User.email) {
+                      if (child.val().password === User.password) {
                         matched = true;
                         console.log('Welcome!', child.val().selected);
                         User.selected = child.val().selected;
                         dispatch(LOGIN_ACTION.userLogin(User));
                         console.log(
-                          `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `,
+                          `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `
                         );
-                        if (child.val().selected == 'Volunteer') {
+                        if (child.val().selected === 'Volunteer') {
                           navigation.navigate('HomepageVolunteer');
                         } else {
                           navigation.navigate('HomepageMember');
@@ -195,7 +194,7 @@ const Login = ({ navigation }) => {
                 .catch((error) => {
                   console.error(error);
                 });
-              if (matched == false) {
+              if (matched === false) {
                 console.log('Incorrect email or password');
                 createTwoButtonAlert();
                 setShowError(true);
@@ -289,7 +288,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

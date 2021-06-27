@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Platform,
-  StyleSheet,
-  StatusBar,
-  Alert,
-} from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 
 const Empty = ({ navigation }) => {
-
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -64,7 +54,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

@@ -12,7 +12,7 @@ import database from '../config/fireBaseConfig';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const pickMeUpForm = ({ navigation }) => {
+const PickMeUpForm = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
   console.log('current user = ', currentUser);
 
@@ -33,7 +33,7 @@ const pickMeUpForm = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false },
+      { cancelable: false }
     );
 
   return (
@@ -161,7 +161,7 @@ const pickMeUpForm = ({ navigation }) => {
   );
 };
 
-export default pickMeUpForm;
+export default PickMeUpForm;
 
 const styles = StyleSheet.create({
   container: {

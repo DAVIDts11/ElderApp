@@ -23,7 +23,7 @@ export default function ViewPage() {
       if (currentUser.selected === 'Club Member') {
         let myMedRequest = [];
         for (i in list) {
-          console.log('item email : == > ', list[i]);
+          console.log('item email : === > ', list[i]);
           if (list[i].childObj.user_email === currentUser.email) {
             myMedRequest.push(list[i]);
           }

@@ -23,7 +23,6 @@ export default function ViewPickUp() {
       if (currentUser.selected === 'Club Member') {
         let myPickupRequest = [];
         for (i in list) {
-          console.log('item email : == > ', list[i]);
           if (list[i].childObj.user_email === currentUser.email) {
             myPickupRequest.push(list[i]);
           }
@@ -32,9 +31,7 @@ export default function ViewPickUp() {
       } else {
         setfindingReq(list);
       }
-      //snapshot.toJSON().then((data)=>{console.log("data ===> " ,data ); setfindingReq(data);})
       setready(true);
-      console.log('list === ', list);
     }
     fetchData();
 

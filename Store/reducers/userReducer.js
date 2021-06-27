@@ -8,7 +8,7 @@ const initUser = {
 const initState = { currentUser: initUser };
 
 export default function reducer(state = initState, action) {
-  if (action.type == SIGNUP || action.type == LOGIN) {
+  if (action.type === SIGNUP || action.type === LOGIN) {
     return { currentUser: action.payload.user };
   } else return state;
 }

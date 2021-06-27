@@ -12,7 +12,7 @@ import database from '../config/fireBaseConfig';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const overMedicationForm = ({ navigation }) => {
+const OverMedicationForm = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
   console.log('current user = ', currentUser);
   const [name, setName] = useState('');
@@ -31,7 +31,7 @@ const overMedicationForm = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false },
+      { cancelable: false }
     );
 
   return (
@@ -214,4 +214,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default overMedicationForm;
+export default OverMedicationForm;

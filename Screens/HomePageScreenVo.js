@@ -8,11 +8,11 @@ const HomepageVolunteer = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-    <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor="#009387" barStyle="light-content" />
 
-    <View style={styles.header}>
-      <Text style={styles.text_header}>Hello {currentUser.email}! Thanks for Volunteering</Text>
-    </View>
+      <View style={styles.header}>
+        <Text style={styles.text_header}>Hello {currentUser.email}! Thanks for Volunteering</Text>
+      </View>
 
       <View style={styles.footer}>
         <TouchableOpacity
@@ -79,11 +79,9 @@ const HomepageVolunteer = ({ navigation }) => {
               },
             ]}
           >
-            Sign Out 
+            Sign Out
           </Text>
         </TouchableOpacity>
-
-
       </View>
     </View>
   );
@@ -165,4 +163,3 @@ const styles = StyleSheet.create({
   },
 });
 export default HomepageVolunteer;
-

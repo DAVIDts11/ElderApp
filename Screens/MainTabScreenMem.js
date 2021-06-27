@@ -2,8 +2,8 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomepageMember from './HomePageScreenMem';
-import pickMeUpForm from './pickMeUpForm';
-import overMedicationForm from './overMedicationForm';
+import PickMeUpForm from './pickMeUpForm';
+import OverMedicationForm from './overMedicationForm';
 import ViewPage from './viewRequests';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -21,7 +21,7 @@ const MainTabScreenMember = () => (
     />
     <Tab.Screen
       name="Pick Me Up"
-      component={pickMeUpForm}
+      component={PickMeUpForm}
       options={{
         tabBarLabel: 'PickUp',
         tabBarColor: '#A0CFEF',
@@ -30,7 +30,7 @@ const MainTabScreenMember = () => (
     />
     <Tab.Screen
       name="Request Meds"
-      component={overMedicationForm}
+      component={OverMedicationForm}
       options={{
         tabBarLabel: 'Meds',
         tabBarColor: '#ECBDC7',

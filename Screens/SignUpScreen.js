@@ -57,7 +57,7 @@ const SignUp = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false },
+      { cancelable: false }
     );
 
   const textInputChange = (val) => {
@@ -315,7 +315,7 @@ const SignUp = ({ navigation }) => {
                   .get()
                   .then((snapshot) => {
                     snapshot.forEach((child) => {
-                      if (child.val().email == User.email) {
+                      if (child.val().email === User.email) {
                         error = true;
                         createTwoButtonAlertSignUp();
                         console.log('User with this email exists!');
@@ -325,14 +325,14 @@ const SignUp = ({ navigation }) => {
                   .catch((error) => {
                     console.error(error);
                   });
-                if (error == false) {
+                if (error === false) {
                   database.ref('users').push(User);
                   dispatch(SIGNUP_ACTION.userSignUp(User));
 
                   console.log(
-                    `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`,
+                    `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
                   );
-                  if (User.selected == 'Volunteer') {
+                  if (User.selected === 'Volunteer') {
                     navigation.navigate('HomepageVolunteer');
                   } else {
                     navigation.navigate('HomepageMember');
@@ -397,7 +397,6 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   footer: {
-    flex: Platform.OS === 'ios' ? 3 : 5,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -426,7 +425,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
   },

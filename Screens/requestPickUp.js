@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { format } from 'date-fns';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const RequestPickUp = (props) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -9,11 +8,9 @@ const RequestPickUp = (props) => {
   const [date, setDate] = useState();
   useEffect(() => {
     setDate(new Date(props.req.childObj.date));
-    console.log('dat  == ', String(date));
     return () => {};
   }, []);
 
-  console.log('req props === > ', props.req);
   function onprs() {}
 
   return (

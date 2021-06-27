@@ -124,10 +124,9 @@ const HomepageMember = ({ navigation }) => {
               },
             ]}
           >
-            Sign Out 
+            Sign Out
           </Text>
         </TouchableOpacity>
-
       </View>
     </View>
   );
