@@ -17,9 +17,10 @@ export default function ViewPickUp() {
         .get()
         .then((snapshot) => {
           snapshot.forEach((child) => {
-            list.push({ childKey: child.key, childObj: child.val() });
+            list.push({ childKey: child.key, childObj: child.val() ,reqType:"medReq" });
           });
         });
+        
       if (currentUser.selected === 'Club Member') {
         let myPickupRequest = [];
         for (i in list) {
@@ -55,7 +56,7 @@ export default function ViewPickUp() {
           }
           data={findingReq}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <RequestPickUp req={item} />}
+          renderItem={({ item }) => <RequestPickUp req={item}/>}
         />
       </View>
     </View>

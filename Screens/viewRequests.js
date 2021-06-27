@@ -3,10 +3,12 @@ import { View, Text, ActivityIndicator, FlatList, StyleSheet, StatusBar } from '
 import database from '../config/fireBaseConfig';
 import Request from './requestItem';
 import { useSelector } from 'react-redux';
+import RequestPickUp from './requestPickUp';
 
 export default function ViewPage() {
   const [findingReq, setfindingReq] = useState([]);
   const [ready, setready] = useState(false);
+  const [together,setTogether] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -17,24 +19,35 @@ export default function ViewPage() {
         .get()
         .then((snapshot) => {
           snapshot.forEach((child) => {
-            list.push({ childKey: child.key, childObj: child.val() });
+            list.push({ childKey: child.key, childObj: child.val() ,reqType:"medReq"});
           });
         });
+
       if (currentUser.selected === 'Club Member') {
+        setTogether(true);
+        await database
+        .ref('pickMeUpRequest')
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((child) => {
+            list.push({ childKey: child.key, childObj: child.val(),reqType:"pickUp" });
+          });
+        });
         let myMedRequest = [];
         for (i in list) {
-          console.log('item email : === > ', list[i]);
+         
           if (list[i].childObj.user_email === currentUser.email) {
             myMedRequest.push(list[i]);
           }
         }
+        console.log('myMedRequest === ', myMedRequest);
         setfindingReq(myMedRequest);
       } else {
         setfindingReq(list);
       }
       //snapshot.toJSON().then((data)=>{console.log("data ===> " ,data ); setfindingReq(data);})
       setready(true);
-      console.log('list === ', list);
+     
     }
     fetchData();
 
@@ -58,7 +71,7 @@ export default function ViewPage() {
           }
           data={findingReq}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <Request req={item} />}
+          renderItem={({ item }) =>item.reqType=="pickUp" ?<RequestPickUp req={item} together={together}/>:<Request req={item}  together={together}/>}
         />
       </View>
     </View>
