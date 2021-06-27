@@ -12,7 +12,7 @@ const HomepageVolunteer = ({ navigation }) => {
 
       <View style={styles.header}>
         <Text style={styles.text_header}>
-          Hello {currentUser.email}! Thanks for Volunteering @ ElderApp!
+          Hello {currentUser.name}! Thanks for Volunteering @ ElderApp!
         </Text>
       </View>
 

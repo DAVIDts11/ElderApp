@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native';
 import moment from 'moment';
 
 // create a component

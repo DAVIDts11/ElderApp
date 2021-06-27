@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
+import moment from "moment";
+import Time from "../Components/time";
 import database from '../config/fireBaseConfig';
+
+
 
 const RequestPickUp = (props) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -12,6 +16,7 @@ const RequestPickUp = (props) => {
     return () => { };
   }, []);
 
+  const time = moment(props.req.childObj.date || moment().format('MMMM Do YYYY, h:mm a'));
 
   function changeTakenStatus() {
     if (takenStatus) {
@@ -68,7 +73,7 @@ const RequestPickUp = (props) => {
       <View style={takenStatus ? styles.TakenCareContener : styles.contener}>
         <View>
           {props.together ? <Text style={styles.innerText}>
-            Request Type:
+            Request Type: 
             <Text style={styles.outterText}>Pick Up</Text>
           </Text> : null}
 
@@ -87,6 +92,7 @@ const RequestPickUp = (props) => {
           <Text style={styles.innerText}>
             Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text>
           </Text>
+          {/* <Time time={time} style={styles.innerText} /> */}
           {takenStatus ? <Text style={styles.innerText}>
             Taken Care By : <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
           </Text> :null}
