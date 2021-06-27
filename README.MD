@@ -27,3 +27,8 @@ Create a user for userself as a member and as a volunteer to see how the functio
 We made sure that once a request is being taken care off, it's color changes to green so the elder person using the app can differenciate betweenr requests that have been seen or not. We also did it in order for different volunteers to understand which requests are open or closed. 
 
 In the database, we save user information, pick up requests, and over the counter medication requests.
+
+
+YouTube Video Link- https://youtu.be/Y7ICBcAJxmc
+
+Github- https://github.com/DAVIDts11/ElderApp
