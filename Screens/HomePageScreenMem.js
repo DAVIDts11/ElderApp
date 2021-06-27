@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Linking } from 'react-native';
 import { useSelector } from 'react-redux';
 
 const HomepageMember = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
   console.log('store user = ', currentUser);
-  const onPress = () => console.log('pressed');
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -83,7 +83,7 @@ const HomepageMember = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Request Meds')}
+          onPress={() => Linking.openURL('https://chat.whatsapp.com/Hd74Cc8Vvc2IP0ff1JMVBG')}
           style={[
             styles.signIn,
             {
@@ -101,9 +101,33 @@ const HomepageMember = ({ navigation }) => {
               },
             ]}
           >
-            Request Over The Counter Medication
+            Chat with eachother!
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MainScreen')}
+          style={[
+            styles.signIn,
+            {
+              borderColor: '#009387',
+              borderWidth: 1,
+              marginTop: 15,
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.textSign,
+              {
+                color: '#98bc98',
+              },
+            ]}
+          >
+            Sign Out 
+          </Text>
+        </TouchableOpacity>
+
       </View>
     </View>
   );

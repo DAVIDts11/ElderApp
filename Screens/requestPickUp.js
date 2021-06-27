@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { format } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Request = (props) => {
+const RequestPickUp = (props) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [date, setDate] = useState();
@@ -20,9 +20,10 @@ const Request = (props) => {
     <TouchableOpacity onPress={onprs}>
       <View style={styles.contener}>
         <View>
-          <Text>{props.req.childObj.name}</Text>
-          <Text>{props.req.childObj.amount} </Text>
-          <Text>{props.req.childObj.user_email} </Text>
+          <Text>{props.req.childObj.destination}</Text>
+          <Text>{props.req.childObj.pickUpDate} </Text>
+          <Text>{props.req.childObj.pickUpPlace} </Text>
+          <Text>{props.req.childObj.pickUpTime} </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -42,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Request;
+export default RequestPickUp;

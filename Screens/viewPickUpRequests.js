@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, FlatList, StyleSheet, StatusBar } from 'react-native';
 import database from '../config/fireBaseConfig';
-import Request from './requestItem';
+import RequestPickUp from './requestPickUp';
 import { useSelector } from 'react-redux';
 
-export default function ViewPage() {
+export default function ViewPickUp() {
   const [findingReq, setfindingReq] = useState([]);
   const [ready, setready] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
@@ -13,7 +13,7 @@ export default function ViewPage() {
     async function fetchData() {
       let list = [];
       await database
-        .ref('medRequest')
+        .ref('pickMeUpRequest')
         .get()
         .then((snapshot) => {
           snapshot.forEach((child) => {
@@ -21,14 +21,14 @@ export default function ViewPage() {
           });
         });
       if (currentUser.selected === 'Club Member') {
-        let myMedRequest = [];
+        let myPickupRequest = [];
         for (i in list) {
           console.log('item email : == > ', list[i]);
           if (list[i].childObj.user_email === currentUser.email) {
-            myMedRequest.push(list[i]);
+            myPickupRequest.push(list[i]);
           }
         }
-        setfindingReq(myMedRequest);
+        setfindingReq(myPickupRequest);
       } else {
         setfindingReq(list);
       }
@@ -58,7 +58,7 @@ export default function ViewPage() {
           }
           data={findingReq}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <Request req={item} />}
+          renderItem={({ item }) => <RequestPickUp req={item} />}
         />
       </View>
     </View>
@@ -68,7 +68,7 @@ export default function ViewPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ECBDC7',
+    backgroundColor: '#A0CFEF',
   },
   header: {
     flex: 1,
