@@ -116,6 +116,9 @@ const OverMedicationForm = ({ navigation }) => {
                 Information,
                 date: today,
                 user_email: currentUser.email,
+                takenCareStatus:false,
+                volonteerName:"" ,
+                phoneNumber:currentUser.phone
               };
               database.ref('medRequest').push(request);
               createTwoButtonAlertOTC();

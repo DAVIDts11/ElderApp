@@ -8,14 +8,14 @@ const Request = (props) => {
   const [date, setDate] = useState();
   useEffect(() => {
     setDate(new Date(props.req.childObj.date));
-    return () => {};
+    return () => { };
   }, []);
 
-  function onprs() {}
-
+  function onprs() { }
+  
   return (
     <TouchableOpacity onPress={onprs}>
-      <View style={styles.contener}>
+      <View style={props.req.childObj.takenCareStatus?styles.TakenCareContener: styles.contener}>
         <View>
           <Text>{props.req.childObj.name}</Text>
           <Text>{props.req.childObj.amount} </Text>
@@ -28,7 +28,7 @@ const Request = (props) => {
 
 const styles = StyleSheet.create({
   contener: {
-    backgroundColor: 'honeydew',
+    backgroundColor: 'palegoldenrod',
     borderWidth: 2.5,
     borderColor: 'gray',
     padding: 10,
@@ -37,6 +37,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: 'tahoma',
   },
+  TakenCareContener:{
+    backgroundColor: 'honeydew',
+    borderWidth: 2.5,
+    borderColor: 'gray',
+    padding: 10,
+    flexDirection: 'row-reverse',
+    width: '95%',
+    marginTop: 10,
+    fontFamily: 'tahoma',
+  }
 });
 
 export default Request;

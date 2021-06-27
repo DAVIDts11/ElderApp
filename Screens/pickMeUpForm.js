@@ -136,6 +136,10 @@ const PickMeUpForm = ({ navigation }) => {
                 destination,
                 pickUpTime,
                 pickUpDate,
+                user_email: currentUser.email,
+                takenCareStatus:false,
+                volonteerName:"" ,
+                phoneNumber:currentUser.phone
               };
               database.ref('pickMeUpRequest').push(pickUprequest);
               createTwoButtonAlert();
