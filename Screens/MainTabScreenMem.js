@@ -41,7 +41,7 @@ const MainTabScreenMember = () => (
       name="ViewPage"
       component={ViewPage}
       options={{
-        tabBarLabel: 'Explore',
+        tabBarLabel: 'My Requests',
         tabBarColor: '#F0CC99',
         tabBarIcon: ({ color }) => <Icon name="clipboard" color={color} size={26} />,
       }}

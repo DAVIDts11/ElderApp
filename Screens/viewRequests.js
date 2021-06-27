@@ -68,7 +68,7 @@ export default function ViewPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ECBDC7',
+    backgroundColor: '#F0CC99',
   },
   header: {
     flex: 1,
