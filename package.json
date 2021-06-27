@@ -63,7 +63,7 @@
   },
   "private": true,
   "checkSubmission": {
-    "ex": "final-project",
+    "ex": "final-project-elderApp",
     "students": [
       {
         "id": "316086479",
@@ -81,6 +81,6 @@
     "submissionDate": "27/06/2021",
     "delay": true,
     "delayReason": "Not enough time to finish- David had a problem with his computer and couldn't open the app",
-    "comments": ""
+    "comments": "some ESLINT errors and warnings that were not taken care of"
   }
 }
