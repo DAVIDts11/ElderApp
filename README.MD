@@ -12,7 +12,7 @@ As a member you can-
 
 
 Log in as a member to view what an Elder person can do- 
-    Email- elderuser@elderapp.com
+    Email- elderuser@elderapp.co.il
     Password- elderuser1!
 
 
