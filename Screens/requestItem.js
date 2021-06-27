@@ -23,12 +23,12 @@ const Request = (props) => {
     <TouchableOpacity onPress={onprs}>
       <View style={props.req.childObj.takenCareStatus ? styles.TakenCareContener : styles.contener}>
         <View>
-          <Text>Name: {props.req.childObj.name}</Text>
-          <Text>Amount needed: {props.req.childObj.amount} </Text>
-          <Text>Contact E-mail: {props.req.childObj.user_email} </Text>
+          <Text style={styles.innerText}>Name: <Text style={styles.outterText}>{props.req.childObj.name}</Text></Text>
+          <Text style={styles.innerText}>Amount needed: <Text style={styles.outterText}>{props.req.childObj.amount}</Text></Text>
+          <Text style={styles.innerText}>Contact E-mail: <Text style={styles.outterText}>{props.req.childObj.user_email}</Text></Text>
+          <Text style={styles.innerText}>Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phoneNumber}</Text></Text>
           {/* <Text onPress={()=>{Linking.openURL(`tel:${props.req.childObj.phoneNumber}`);}}></Text> */}
-          <Text>Contact Phone: {props.req.childObj.phoneNumber} </Text>
-          <Time time={time} />
+          <Time time={time} style={styles.innerText} />
         </View>
       </View>
     </TouchableOpacity>
@@ -37,25 +37,34 @@ const Request = (props) => {
 
 const styles = StyleSheet.create({
   contener: {
-    backgroundColor: 'palegoldenrod',
+    backgroundColor: '#F29B9B',
     borderWidth: 2.5,
-    borderColor: 'gray',
+    borderRadius: 10,
+    borderColor: '#FFFFFF',
     padding: 10,
-    // flexDirection: 'row-reverse',
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
+    fontSize: 18,
   },
   TakenCareContener: {
-    backgroundColor: 'honeydew',
+    backgroundColor: '#B9DCB4',
     borderWidth: 2.5,
-    borderColor: 'gray',
+    borderColor: '#FFFFFF',
+    borderRadius: 10,
     padding: 10,
-    // flexDirection: 'row-reverse',
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
   },
-});
+  innerText:{
+    color: '#05375a',
+    fontWeight: 'bold',
+  },
+  outterText:{
+    color:'#05375a',
+    fontWeight: 'normal',
 
+  }
+});
 export default Request;

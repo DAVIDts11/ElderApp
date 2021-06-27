@@ -17,11 +17,11 @@ const RequestPickUp = (props) => {
     <TouchableOpacity onPress={onprs}>
       <View style={props.req.childObj.takenCareStatus?styles.TakenCareContener: styles.contener}>
         <View>
-          <Text>{props.req.childObj.destination}</Text>
-          <Text>{props.req.childObj.pickUpDate} </Text>
-          <Text>{props.req.childObj.pickUpPlace} </Text>
-          <Text>{props.req.childObj.pickUpTime} </Text>
-          <Text>{props.req.childObj.phone} </Text>
+        <Text style={styles.innerText}>Destination: <Text style={styles.outterText}>{props.req.childObj.destination}</Text></Text>
+        <Text style={styles.innerText}>Pick-Up Place: <Text style={styles.outterText}>{props.req.childObj.pickUpPlace}</Text></Text>
+        <Text style={styles.innerText}>Pick-Up Date: <Text style={styles.outterText}>{props.req.childObj.pickUpDate}</Text></Text>
+        <Text style={styles.innerText}>Pick-Up Time: <Text style={styles.outterText}>{props.req.childObj.pickUpTime}</Text></Text>
+        <Text style={styles.innerText}>Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text></Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -30,24 +30,34 @@ const RequestPickUp = (props) => {
 
 const styles = StyleSheet.create({
   contener: {
-    backgroundColor: 'honeydew',
+    backgroundColor: '#F29B9B',
     borderWidth: 2.5,
-    borderColor: 'gray',
+    borderRadius: 10,
+    borderColor: '#FFFFFF',
     padding: 10,
-    flexDirection: 'row-reverse',
+    width: '95%',
+    marginTop: 10,
+    fontFamily: 'tahoma',
+    fontSize: 18,
+  },
+  TakenCareContener: {
+    backgroundColor: '#B9DCB4',
+    borderWidth: 2.5,
+    borderColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 10,
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
   },
-  TakenCareContener:{
-    backgroundColor: 'honeydew',
-    borderWidth: 2.5,
-    borderColor: 'gray',
-    padding: 10,
-    flexDirection: 'row-reverse',
-    width: '95%',
-    marginTop: 10,
-    fontFamily: 'tahoma',
+  innerText:{
+    color: '#05375a',
+    fontWeight: 'bold',
+  },
+  outterText:{
+    color:'#05375a',
+    fontWeight: 'normal',
+
   }
 });
 
