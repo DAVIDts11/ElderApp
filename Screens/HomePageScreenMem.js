@@ -6,13 +6,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 const HomepageMember = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
   console.log('store user = ', currentUser);
+  console.log(currentUser);
+
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
 
       <View style={styles.header}>
-        <Text style={styles.text_header}>Hello {currentUser.email}!</Text>
+        <Text style={styles.text_header}>Hello {currentUser.name}!</Text>
         <Text style={styles.text_header}>What would you like to do today?</Text>
       </View>
 
