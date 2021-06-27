@@ -11,19 +11,19 @@ export default function ViewPickUp() {
 
   useEffect(() => {
     async function fetchData() {
-      let list = [];
+      const list = [];
       await database
         .ref('pickMeUpRequest')
         .get()
         .then((snapshot) => {
           snapshot.forEach((child) => {
-            list.push({ childKey: child.key, childObj: child.val() ,reqType:"medReq" });
+            list.push({ childKey: child.key, childObj: child.val(), reqType: 'medReq' });
           });
         });
-        
+
       if (currentUser.selected === 'Club Member') {
-        let myPickupRequest = [];
-        for (i in list) {
+        const myPickupRequest = [];
+        for (const i in list) {
           if (list[i].childObj.user_email === currentUser.email) {
             myPickupRequest.push(list[i]);
           }
@@ -56,7 +56,7 @@ export default function ViewPickUp() {
           }
           data={findingReq}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <RequestPickUp req={item}/>}
+          renderItem={({ item }) => <RequestPickUp req={item} />}
         />
       </View>
     </View>
@@ -86,52 +86,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 30,
-  },
-  text_footer: {
-    color: '#05375a',
-    fontSize: 18,
-  },
-  action: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-  },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FF0000',
-    paddingBottom: 5,
-  },
-  textInput: {
-    flex: 1,
-    paddingLeft: 10,
-    color: '#05375a',
-  },
-  errorMsg: {
-    color: '#FF0000',
-    fontSize: 14,
-  },
-  button: {
-    alignItems: 'center',
-    marginTop: 50,
-  },
-  signIn: {
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  textSign: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  submitButton: {
-    color: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
   },
 });

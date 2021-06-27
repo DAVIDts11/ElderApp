@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
+
 import {
   View,
   Text,
   TouchableOpacity,
   TextInput,
-  Platform,
   StyleSheet,
   ScrollView,
   StatusBar,
@@ -57,7 +56,7 @@ const SignUp = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
 
   const textInputChange = (val) => {
@@ -136,28 +135,6 @@ const SignUp = ({ navigation }) => {
       secureTextEntry: !data.secureTextEntry,
     });
   };
-
-  const handleValidUser = (val) => {
-    if (val.trim().length >= 4) {
-      setData({
-        ...data,
-        isValidUser: true,
-      });
-    } else {
-      setData({
-        ...data,
-        isValidUser: false,
-      });
-    }
-  };
-
-  const updateConfirmSecureTextEntry = () => {
-    setData({
-      ...data,
-      confirm_secureTextEntry: !data.confirm_secureTextEntry,
-    });
-  };
-
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -189,21 +166,12 @@ const SignUp = ({ navigation }) => {
             </View>
           )}
 
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                marginTop: 35,
-              },
-            ]}
-          >
-            Password
-          </Text>
+          <Text style={styles.passwardtext}>Password</Text>
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
               placeholder="Your Password"
-              secureTextEntry={data.secureTextEntry ? true : false}
+              secureTextEntry={!!data.secureTextEntry}
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={(val) => handlePasswordChange(val)}
@@ -221,16 +189,7 @@ const SignUp = ({ navigation }) => {
               <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
             </View>
           )}
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                marginTop: 35,
-              },
-            ]}
-          >
-            Name
-          </Text>
+          <Text style={styles.nameText}>Name</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
             <TextInput
@@ -245,16 +204,7 @@ const SignUp = ({ navigation }) => {
               </View>
             ) : null}
           </View>
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                marginTop: 35,
-              },
-            ]}
-          >
-            Phone
-          </Text>
+          <Text style={styles.phoneText}>Phone</Text>
           <View style={styles.action}>
             <FontAwesome name="phone" color="#05375a" size={20} />
             <TextInput
@@ -270,16 +220,7 @@ const SignUp = ({ navigation }) => {
             </View>
           )}
 
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                marginTop: 35,
-              },
-            ]}
-          >
-            User Type
-          </Text>
+          <Text style={styles.userTypeText}>User Type</Text>
 
           <SelectPicker
             style={styles.textInput}
@@ -304,7 +245,7 @@ const SignUp = ({ navigation }) => {
                 const User = {
                   email: data.email,
                   password: data.password,
-                  selected: selected,
+                  selected,
                   phone: data.phone,
                   name: data.name,
                 };
@@ -330,7 +271,7 @@ const SignUp = ({ navigation }) => {
                   dispatch(SIGNUP_ACTION.userSignUp(User));
 
                   console.log(
-                    `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`
+                    `Your email is ${email} \n and your password  is ${password}\n. You are ${selected}`,
                   );
                   if (User.selected === 'Volunteer') {
                     navigation.navigate('HomepageVolunteer');
@@ -341,40 +282,12 @@ const SignUp = ({ navigation }) => {
               }}
             >
               <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
-                <Text
-                  style={[
-                    styles.textSign,
-                    {
-                      color: '#fff',
-                    },
-                  ]}
-                >
-                  Sign Up
-                </Text>
+                <Text style={styles.signUpText}>Sign Up</Text>
               </LinearGradient>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={[
-                styles.signIn,
-                {
-                  borderColor: '#60a860',
-                  borderWidth: 1,
-                  marginTop: 15,
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: '#60a860',
-                  },
-                ]}
-              >
-                Sign In
-              </Text>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.signInTouchble}>
+              <Text style={styles.signInText}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -439,16 +352,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  textSign: {
+  passwardtext: {
+    marginTop: 35,
+    color: '#05375a',
+    fontSize: 18,
+  },
+  nameText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  phoneText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  userTypeText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  signUpText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#fff',
   },
-  textPrivate: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 20,
+  signInTouchble: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: '#60a860',
+    borderWidth: 1,
+    marginTop: 15,
   },
-  color_textPrivate: {
-    color: 'grey',
+  signInText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#60a860',
   },
 });

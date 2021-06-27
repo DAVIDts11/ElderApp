@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
-import moment from "moment";
-import Time from "../Components/time";
 import database from '../config/fireBaseConfig';
-
-
 
 const RequestPickUp = (props) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -13,15 +9,12 @@ const RequestPickUp = (props) => {
   const [takenStatus, setTakenStatus] = useState(false);
   useEffect(() => {
     setTakenStatus(props.req.childObj.takenCareStatus);
-    return () => { };
   }, []);
-
-  const time = moment(props.req.childObj.date || moment().format('MMMM Do YYYY, h:mm a'));
 
   function changeTakenStatus() {
     if (takenStatus) {
       Alert.alert(
-        "Would you like to take care of this request?",
+        'Would you like to take care of this request?',
         'Status will be changed to "taking care"',
         [
           {
@@ -30,21 +23,19 @@ const RequestPickUp = (props) => {
             style: 'cancel',
           },
           {
-            text: 'OK', onPress: () => {
+            text: 'OK',
+            onPress: () => {
               database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: false });
               setTakenStatus(false);
-              console.log('OK Pressed')
-            }
+              console.log('OK Pressed');
+            },
           },
         ],
-        { cancelable: false }
-
-
+        { cancelable: false },
       );
-    }
-    else {
+    } else {
       Alert.alert(
-        "Would you like to take care of this request?",
+        'Would you like to take care of this request?',
         'Status will be changed to "taking care"',
         [
           {
@@ -53,18 +44,18 @@ const RequestPickUp = (props) => {
             style: 'cancel',
           },
           {
-            text: 'OK', onPress: async() => {
-              await database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: true, volonteerName: currentUser.name });
+            text: 'OK',
+            onPress: async () => {
+              await database
+                .ref('medRequest/' + props.req.childKey)
+                .update({ takenCareStatus: true, volonteerName: currentUser.name });
               setTakenStatus(true);
               console.log('OK Pressed');
-            }
+            },
           },
         ],
-        { cancelable: false }
-
-
+        { cancelable: false },
       );
-
     }
   }
 
@@ -72,10 +63,12 @@ const RequestPickUp = (props) => {
     <TouchableOpacity onPress={changeTakenStatus}>
       <View style={takenStatus ? styles.TakenCareContener : styles.contener}>
         <View>
-          {props.together ? <Text style={styles.innerText}>
-            Request Type: 
-            <Text style={styles.outterText}>Pick Up</Text>
-          </Text> : null}
+          {props.together ? (
+            <Text style={styles.innerText}>
+              Request Type:
+              <Text style={styles.outterText}>Pick Up</Text>
+            </Text>
+          ) : null}
 
           <Text style={styles.innerText}>
             Destination: <Text style={styles.outterText}>{props.req.childObj.destination}</Text>
@@ -93,9 +86,12 @@ const RequestPickUp = (props) => {
             Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text>
           </Text>
           {/* <Time time={time} style={styles.innerText} /> */}
-          {takenStatus ? <Text style={styles.innerText}>
-            Taken Care By : <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
-          </Text> :null}
+          {takenStatus ? (
+            <Text style={styles.innerText}>
+              Taken Care By :
+              <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
+            </Text>
+          ) : null}
         </View>
       </View>
     </TouchableOpacity>

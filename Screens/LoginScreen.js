@@ -24,10 +24,6 @@ const Login = ({ navigation }) => {
     secureTextEntry: true,
   });
 
-  // remove these initial assignments after testing
-
-  const [showError, setShowError] = useState(false);
-
   const dispatch = useDispatch();
 
   const textInputChange = (val) => {
@@ -83,22 +79,8 @@ const Login = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
-
-  const handleValidUser = (val) => {
-    if (val.trim().length >= 4) {
-      setData({
-        ...data,
-        isValidUser: true,
-      });
-    } else {
-      setData({
-        ...data,
-        isValidUser: false,
-      });
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -124,21 +106,12 @@ const Login = ({ navigation }) => {
             </View>
           ) : null}
         </View>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Password
-        </Text>
+        <Text style={styles.foot}>Password</Text>
         <View style={styles.action}>
           <FontAwesome name="lock" color="black" size={20} />
           <TextInput
             placeholder="Your Password"
-            secureTextEntry={data.secureTextEntry ? true : false}
+            secureTextEntry={!!data.secureTextEntry}
             placeholderTextColor="#666666"
             style={styles.textInput}
             autoCapitalize="none"
@@ -153,20 +126,16 @@ const Login = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity>
-          <Text style={{ color: '#009387', marginTop: 15 }}>Forgot password?</Text>
-        </TouchableOpacity>
-
         <View style={styles.button}>
           <TouchableOpacity
             style={styles.signIn}
             onPress={async () => {
-              let User = {
+              const User = {
                 email: data.email,
                 password: data.password,
                 selected: '',
                 phone: '',
-                name:""
+                name: '',
               };
               let matched = false;
               //check if user exists function
@@ -184,7 +153,7 @@ const Login = ({ navigation }) => {
                         User.name = child.val().name;
                         dispatch(LOGIN_ACTION.userLogin(User));
                         console.log(
-                          `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `
+                          `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `,
                         );
                         if (child.val().selected === 'Volunteer') {
                           navigation.navigate('HomepageVolunteer');
@@ -201,45 +170,16 @@ const Login = ({ navigation }) => {
               if (matched === false) {
                 console.log('Incorrect email or password');
                 createTwoButtonAlert();
-                setShowError(true);
               }
             }}
           >
             <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: '#fff',
-                  },
-                ]}
-              >
-                Sign In
-              </Text>
+              <Text style={styles.textAdd}>Sign In</Text>
             </LinearGradient>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => navigation.navigate('SignUp')}
-            style={[
-              styles.signIn,
-              {
-                borderColor: '#009387',
-                borderWidth: 1,
-                marginTop: 15,
-              },
-            ]}
-          >
-            <Text
-              style={[
-                styles.textSign,
-                {
-                  color: '#009387',
-                },
-              ]}
-            >
-              Sign Up
-            </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.signinFir}>
+            <Text style={styles.textSec}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -283,21 +223,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
   },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FF0000',
-    paddingBottom: 5,
-  },
   textInput: {
     flex: 1,
     paddingLeft: 10,
     color: '#05375a',
-  },
-  errorMsg: {
-    color: '#FF0000',
-    fontSize: 14,
   },
   button: {
     alignItems: 'center',
@@ -310,14 +239,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  textSign: {
+  foot: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  textAdd: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'white',
   },
-  submitButton: {
-    color: 'black',
+  textSec: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#009387',
+  },
+  signinFir: {
+    width: '100%',
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    borderRadius: 10,
+    borderColor: '#009387',
+    borderWidth: 1,
+    marginTop: 15,
   },
 });

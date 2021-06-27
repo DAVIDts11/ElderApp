@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import moment from 'moment';
 
 // create a component
@@ -12,7 +12,7 @@ class Time extends Component {
   render() {
     const time = moment(this.date || moment.now()).fromNow();
     return (
-      <Text note style={{ marginHorizontal: 10 }}>
+      <Text note style={styles.text}>
         {time}
       </Text>
     );
@@ -21,3 +21,8 @@ class Time extends Component {
 
 //make this component available to the app
 export default Time;
+const styles = StyleSheet.create({
+  text: {
+    marginHorizontal: 10,
+  },
+});

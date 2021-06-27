@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-let firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'AIzaSyA48cbMgESZYhAcx3qwoYRspHr1m3Quu00',
   authDomain: 'elderapp-54404.firebaseapp.com',
   projectId: 'elderapp-54404',
@@ -9,6 +9,6 @@ let firebaseConfig = {
   appId: '1:839232656580:web:a69e3cb73d0536040f6591',
 };
 firebase.initializeApp(firebaseConfig);
-let database = firebase.database();
+const database = firebase.database();
 
 export default database;

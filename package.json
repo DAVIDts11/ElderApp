@@ -31,7 +31,6 @@
     "firebase": "^8.6.8",
     "moment": "^2.29.1",
     "native-base": "^3.0.2",
-    "prettier": "^2.3.2",
     "react": "17.0.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
@@ -58,8 +57,15 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-native": "^4.1.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-native": "^3.11.0"
+    "eslint-plugin-react-native": "^3.11.0",
+    "prettier": "^2.3.2"
   },
   "private": true,
   "checkSubmission": {

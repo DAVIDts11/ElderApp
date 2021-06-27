@@ -16,7 +16,7 @@ const MainTabScreenMember = () => (
       options={{
         tabBarLabel: 'Home',
         tabBarColor: '#CCCCCC',
-        tabBarIcon: ({ color }) => <Icon name="ios-home" color={color} size={26} />,
+        tabBarIcon: ({ color }) => <Icon name="ios-home" color="white" size={26} />,
       }}
     />
     <Tab.Screen

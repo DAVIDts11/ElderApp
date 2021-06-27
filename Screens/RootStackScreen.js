@@ -10,7 +10,7 @@ import MainTabScreenVol from './MainTabScreenVol';
 
 const RootStack = createStackNavigator();
 
-const RootStackScreen = ({ navigation }) => (
+const RootStackScreen = () => (
   <RootStack.Navigator headerMode="none">
     <RootStack.Screen name="MainScreen" component={MainScreen} />
     <RootStack.Screen name="Login" component={LoginScreen} />
@@ -19,7 +19,6 @@ const RootStackScreen = ({ navigation }) => (
     <RootStack.Screen name="HomepageMember" component={MainTabScreenMember} />
     <RootStack.Screen name="PickMeUpForm" component={MainTabScreenMember} />
     <RootStack.Screen name="OverMedicationForm" component={MainTabScreenMember} />
-
     <RootStack.Screen name="MedsVol" component={MainTabScreenVol} />
     <RootStack.Screen name="PickupVol" component={MainTabScreenVol} />
   </RootStack.Navigator>

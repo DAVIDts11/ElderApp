@@ -6,27 +6,25 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 // import { useTheme } from '@react-navigation/native';
 
-const MainScreen = ({ navigation }) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="stretch" />
-      </View>
-      <View style={styles.footer}>
-        <Text style={styles.title}>Stay connected with everyone!</Text>
-        <Text style={styles.text}>Sign in with an account</Text>
-        <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
-              <Text style={styles.textSign}>Get Started</Text>
-              <MaterialIcons name="navigate-next" color="#fff" size={20} />
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
+const MainScreen = ({ navigation }) => (
+  <View style={styles.container}>
+    <View style={styles.header}>
+      <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="stretch" />
+    </View>
+    <View style={styles.footer}>
+      <Text style={styles.title}>Stay connected with everyone!</Text>
+      <Text style={styles.text}>Sign in with an account</Text>
+      <View style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
+            <Text style={styles.textSign}>Get Started</Text>
+            <MaterialIcons name="navigate-next" color="#fff" size={20} />
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </View>
-  );
-};
+  </View>
+);
 
 export default MainScreen;
 

@@ -32,7 +32,7 @@ const PickMeUpForm = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
 
   return (
@@ -44,16 +44,7 @@ const PickMeUpForm = ({ navigation }) => {
       </View>
 
       <View style={styles.footer}>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Pick-Up Place
-        </Text>
+        <Text style={styles.pickUpPlaceText}>Pick-Up Place</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="Where do I get picked-up?"
@@ -64,16 +55,7 @@ const PickMeUpForm = ({ navigation }) => {
             onChangeText={(text) => setpickUpPlace(text)}
           />
         </View>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Destination Address
-        </Text>
+        <Text style={styles.disAddrText}>Destination Address</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="Where am I going?"
@@ -84,16 +66,7 @@ const PickMeUpForm = ({ navigation }) => {
             onChangeText={(text) => setDestination(text)}
           />
         </View>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Pick-Up Time
-        </Text>
+        <Text style={styles.pickTimeText}>Pick-Up Time</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="When do I want to be picked up?"
@@ -104,16 +77,7 @@ const PickMeUpForm = ({ navigation }) => {
             onChangeText={(text) => setPickUpTime(text)}
           />
         </View>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Pick-Up Date
-        </Text>
+        <Text style={styles.pickDateText}>Pick-Up Date</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="Pick me up on what day?"
@@ -129,7 +93,7 @@ const PickMeUpForm = ({ navigation }) => {
           <TouchableOpacity
             style={styles.signIn}
             onPress={async () => {
-              let pickUprequest = {
+              const pickUprequest = {
                 pickUpPlace,
                 destination,
                 pickUpTime,
@@ -139,22 +103,13 @@ const PickMeUpForm = ({ navigation }) => {
                 volonteerName: '',
                 phoneNumber: currentUser.phone,
               };
-              database.ref('pickMeUpRequest').push(pickUprequest);
+              await database.ref('pickMeUpRequest').push(pickUprequest);
               createTwoButtonAlert();
               navigation.navigate('Home');
             }}
           >
             <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: '#fff',
-                  },
-                ]}
-              >
-                Request Pick-Up
-              </Text>
+              <Text style={styles.reqText}>Request Pick-Up</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -189,31 +144,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
   },
-  text_footer: {
-    color: '#05375a',
-    fontSize: 18,
-  },
   action: {
     flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
   },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FF0000',
-    paddingBottom: 5,
-  },
   textInput: {
     flex: 1,
     paddingLeft: 10,
     color: '#05375a',
-  },
-  errorMsg: {
-    color: '#FF0000',
-    fontSize: 14,
   },
   button: {
     alignItems: 'center',
@@ -226,14 +166,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  textSign: {
+  reqText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#fff',
   },
-  submitButton: {
-    color: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
+  pickUpPlaceText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  disAddrText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  pickTimeText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
+  },
+  pickDateText: {
+    color: '#05375a',
+    fontSize: 18,
+    marginTop: 35,
   },
 });

@@ -9,7 +9,7 @@ import Empty from './Settings';
 const TabsVol = createMaterialBottomTabNavigator();
 
 const MainTabScreenVol = () => (
-  <TabsVol.Navigator>
+  <TabsVol.Navigator activeColor="#fff">
     <TabsVol.Screen
       name="Home"
       component={HomepageVolunteer}

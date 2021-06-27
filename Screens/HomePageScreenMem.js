@@ -8,7 +8,6 @@ const HomepageMember = ({ navigation }) => {
   console.log('store user = ', currentUser);
   console.log(currentUser);
 
-
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -21,139 +20,37 @@ const HomepageMember = ({ navigation }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => navigation.navigate('Request Meds')}
-          style={[
-            styles.signIn,
-            {
-              borderColor: '#009387',
-              borderWidth: 1,
-              marginTop: 15,
-            },
-          ]}
+          style={styles.requestMeds}
         >
-          <Text
-            style={[
-              styles.textSign,
-              {
-                color: '#98bc98',
-              },
-            ]}
-          >
-            Request Over The Counter Medication
-          </Text>
+          <Text style={styles.secText}>Request Over The Counter Medication</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('Pick Me Up')}
-          style={[
-            styles.signIn,
-            {
-              borderColor: '#009387',
-              borderWidth: 1,
-              marginTop: 15,
-            },
-          ]}
+          style={[styles.pickMeUpstyle]}
         >
-          <Text
-            style={[
-              styles.textSign,
-              {
-                color: '#98bc98',
-              },
-            ]}
-          >
-            Request A Pick Up Ride!
-          </Text>
+          <Text style={styles.secText}>Request A Pick Up Ride!</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ViewPage')}
-          style={[
-            styles.signIn,
-            {
-              borderColor: '#009387',
-              borderWidth: 1,
-              marginTop: 15,
-            },
-          ]}
-        >
-          <Text
-            style={[
-              styles.textSign,
-              {
-                color: '#98bc98',
-              },
-            ]}
-          >
-            My Requests
-          </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('ViewPage')} style={styles.viewPage}>
+          <Text style={styles.secText}>My Requests</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => Linking.openURL('https://chat.whatsapp.com/Hd74Cc8Vvc2IP0ff1JMVBG')}
-          style={[
-            styles.signIn,
-            {
-              borderColor: '#009387',
-              borderWidth: 1,
-              marginTop: 15,
-            },
-          ]}
+          style={styles.signinAdds}
         >
-          <Text
-            style={[
-              styles.textSign,
-              {
-                color: '#98bc98',
-              },
-            ]}
-          >
-            Chat with eachother!
-          </Text>
+          <Text style={styles.secText}>Chat with eachother!</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('MainScreen')}
-          style={[
-            styles.signIn,
-            {
-              borderColor: '#009387',
-              borderWidth: 1,
-              marginTop: 15,
-            },
-          ]}
+          style={styles.mainScreen}
         >
-          <Text
-            style={[
-              styles.textSign,
-              {
-                color: '#98bc98',
-              },
-            ]}
-          >
-            Sign Out
-          </Text>
+          <Text style={styles.secText}>Sign Out</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => Linking.openURL(`tel:${100}`)}
-          style={[
-            styles.signIn,
-            {
-              borderColor: '#ffffff',
-              borderWidth: 1,
-              marginTop: 15,
-            },
-          ]}
-        >
+        <TouchableOpacity onPress={() => Linking.openURL(`tel:${100}`)} style={styles.signoutAdd}>
           <LinearGradient colors={['#F29B9B', '#F7665E']} style={styles.signIn}>
-            <Text
-              style={[
-                styles.textSign,
-                {
-                  color: '#FFFFFF',
-                },
-              ]}
-            >
-              EMERGENCY CALL
-            </Text>
+            <Text style={styles.secTextEm}>EMERGENCY CALL</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -185,39 +82,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
   },
-  text_footer: {
-    color: '#05375a',
-    fontSize: 18,
-  },
-  action: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-  },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FF0000',
-    paddingBottom: 5,
-  },
-  textInput: {
-    flex: 1,
-    paddingLeft: 10,
-    color: '#05375a',
-  },
-  errorMsg: {
-    color: '#FF0000',
-    fontSize: 14,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'gray',
-    marginTop: 50,
-    width: 140,
-    height: 140,
-  },
   signIn: {
     width: '100%',
     height: 50,
@@ -225,15 +89,75 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  textSign: {
+  requestMeds: {
+    borderColor: '#009387',
+    borderWidth: 1,
+    marginTop: 15,
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  secText: {
+    color: '#98bc98',
     fontSize: 18,
     fontWeight: 'bold',
   },
-  submitButton: {
-    color: 'black',
+  pickMeUpstyle: {
+    borderColor: '#009387',
+    borderWidth: 1,
+    marginTop: 15,
+    width: '100%',
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    borderRadius: 10,
+  },
+  viewPage: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: '#009387',
+    borderWidth: 1,
+    marginTop: 15,
+  },
+  signinAdds: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: '#009387',
+    borderWidth: 1,
+    marginTop: 15,
+  },
+  mainScreen: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: '#009387',
+    borderWidth: 1,
+    marginTop: 15,
+  },
+  signoutAdd: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    marginTop: 15,
+  },
+  secTextEm: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 export default HomepageMember;

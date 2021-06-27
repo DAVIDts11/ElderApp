@@ -31,7 +31,7 @@ const OverMedicationForm = ({ navigation }) => {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
 
   return (
@@ -43,16 +43,7 @@ const OverMedicationForm = ({ navigation }) => {
       </View>
 
       <View style={styles.footer}>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Medication Name
-        </Text>
+        <Text style={styles.footerAdd}>Medication Name</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="Medication Name"
@@ -63,16 +54,7 @@ const OverMedicationForm = ({ navigation }) => {
             onChangeText={(text) => setName(text)}
           />
         </View>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Amount
-        </Text>
+        <Text style={styles.footerAdd}>Amount</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="Amount of the Medication"
@@ -83,16 +65,7 @@ const OverMedicationForm = ({ navigation }) => {
             onChangeText={(text) => setAmount(text)}
           />
         </View>
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
-        >
-          Extra Information
-        </Text>
+        <Text style={styles.footerAdd}>Extra Information</Text>
         <View style={styles.action}>
           <TextInput
             placeholder="Extra Information about the pills you want"
@@ -109,8 +82,8 @@ const OverMedicationForm = ({ navigation }) => {
             style={styles.signIn}
             onPress={async () => {
               console.log('pressed');
-              let today = Date.now();
-              let request = {
+              const today = Date.now();
+              const request = {
                 name,
                 amount,
                 Information,
@@ -126,16 +99,7 @@ const OverMedicationForm = ({ navigation }) => {
             }}
           >
             <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: '#fff',
-                  },
-                ]}
-              >
-                Request Medication
-              </Text>
+              <Text style={styles.textSignAdd}>Request Medication</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -168,9 +132,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
   },
-  text_footer: {
+  textSignAdd: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  footerAdd: {
     color: '#05375a',
     fontSize: 18,
+    marginTop: 35,
   },
   action: {
     flexDirection: 'row',
@@ -178,21 +148,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
   },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FF0000',
-    paddingBottom: 5,
-  },
   textInput: {
     flex: 1,
     paddingLeft: 10,
     color: '#05375a',
-  },
-  errorMsg: {
-    color: '#FF0000',
-    fontSize: 14,
   },
   button: {
     alignItems: 'center',
@@ -204,16 +163,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-  },
-  textSign: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  submitButton: {
-    color: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
   },
 });
 

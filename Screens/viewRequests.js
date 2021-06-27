@@ -8,34 +8,33 @@ import RequestPickUp from './requestPickUp';
 export default function ViewPage() {
   const [findingReq, setfindingReq] = useState([]);
   const [ready, setready] = useState(false);
-  const [together,setTogether] = useState(false);
+  const [together, setTogether] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     async function fetchData() {
-      let list = [];
+      const list = [];
       await database
         .ref('medRequest')
         .get()
         .then((snapshot) => {
           snapshot.forEach((child) => {
-            list.push({ childKey: child.key, childObj: child.val() ,reqType:"medReq"});
+            list.push({ childKey: child.key, childObj: child.val(), reqType: 'medReq' });
           });
         });
 
       if (currentUser.selected === 'Club Member') {
         setTogether(true);
         await database
-        .ref('pickMeUpRequest')
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((child) => {
-            list.push({ childKey: child.key, childObj: child.val(),reqType:"pickUp" });
+          .ref('pickMeUpRequest')
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((child) => {
+              list.push({ childKey: child.key, childObj: child.val(), reqType: 'pickUp' });
+            });
           });
-        });
-        let myMedRequest = [];
-        for (i in list) {
-         
+        const myMedRequest = [];
+        for (const i in list) {
           if (list[i].childObj.user_email === currentUser.email) {
             myMedRequest.push(list[i]);
           }
@@ -47,7 +46,6 @@ export default function ViewPage() {
       }
       //snapshot.toJSON().then((data)=>{console.log("data ===> " ,data ); setfindingReq(data);})
       setready(true);
-     
     }
     fetchData();
 
@@ -71,7 +69,13 @@ export default function ViewPage() {
           }
           data={findingReq}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) =>item.reqType=="pickUp" ?<RequestPickUp req={item} together={together}/>:<Request req={item}  together={together}/>}
+          renderItem={({ item }) =>
+            item.reqType === 'pickUp' ? (
+              <RequestPickUp req={item} together={together} />
+            ) : (
+              <Request req={item} together={together} />
+            )
+          }
         />
       </View>
     </View>
@@ -101,52 +105,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 30,
-  },
-  text_footer: {
-    color: '#05375a',
-    fontSize: 18,
-  },
-  action: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-  },
-  actionError: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#FF0000',
-    paddingBottom: 5,
-  },
-  textInput: {
-    flex: 1,
-    paddingLeft: 10,
-    color: '#05375a',
-  },
-  errorMsg: {
-    color: '#FF0000',
-    fontSize: 14,
-  },
-  button: {
-    alignItems: 'center',
-    marginTop: 50,
-  },
-  signIn: {
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  textSign: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  submitButton: {
-    color: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
   },
 });
