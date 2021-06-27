@@ -11,7 +11,7 @@ const Request = (props) => {
   const [takenStatus, setTakenStatus] = useState(false);
   useEffect(() => {
     setTakenStatus(props.req.childObj.takenCareStatus);
-    return () => {};
+    return () => { };
   }, []);
 
   const time = moment(props.req.childObj.date || moment().format('MMMM Do YYYY, h:mm a'));
@@ -52,10 +52,10 @@ const Request = (props) => {
           },
           {
             text: "OK",
-            onPress: () => {
-              database
+            onPress:async () => {
+             await database
                 .ref("medRequest/" + props.req.childKey)
-                .update({ takenCareStatus: true });
+                .update({ takenCareStatus: true , volonteerName: currentUser.name});
               setTakenStatus(true);
               console.log("OK Pressed");
             },
@@ -70,28 +70,35 @@ const Request = (props) => {
     <TouchableOpacity onPress={changeTakenStatus}>
       <View style={takenStatus ? styles.TakenCareContener : styles.contener}>
         <View>
+          {props.together?<Text style={styles.innerText}>
+            Request Type:
+            <Text style={styles.outterText}>Medication</Text>
+          </Text> :null}        
           <Text style={styles.innerText}>
-            Name:{" "}
+            Name:
             <Text style={styles.outterText}>{props.req.childObj.name}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Amount needed:{" "}
+            Amount needed:
             <Text style={styles.outterText}>{props.req.childObj.amount}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Contact E-mail:{" "}
+            Contact E-mail:
             <Text style={styles.outterText}>
               {props.req.childObj.user_email}
             </Text>
           </Text>
           <Text style={styles.innerText}>
-            Contact Phone:{" "}
+            Contact Phone:
             <Text style={styles.outterText}>
               {props.req.childObj.phoneNumber}
             </Text>
           </Text>
           {/* <Text onPress={()=>{Linking.openURL(`tel:${props.req.childObj.phoneNumber}`);}}></Text> */}
           <Time time={time} style={styles.innerText} />
+          {takenStatus ? <Text style={styles.innerText}>
+            Taken Care By : <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
+          </Text> :null}
         </View>
       </View>
     </TouchableOpacity>

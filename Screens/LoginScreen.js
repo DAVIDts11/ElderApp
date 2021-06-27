@@ -166,6 +166,7 @@ const Login = ({ navigation }) => {
                 password: data.password,
                 selected: '',
                 phone: '',
+                name:""
               };
               let matched = false;
               //check if user exists function
@@ -180,6 +181,7 @@ const Login = ({ navigation }) => {
                         console.log('Welcome!', child.val().selected);
                         User.selected = child.val().selected;
                         User.phone = child.val().phone;
+                        User.name = child.val().name;
                         dispatch(LOGIN_ACTION.userLogin(User));
                         console.log(
                           `Your email is ${data.email} \n and your password  is ${data.password}\n. You are  ${User.selected} `

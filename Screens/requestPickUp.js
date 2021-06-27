@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text,Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import database from '../config/fireBaseConfig';
 
@@ -12,7 +12,7 @@ const RequestPickUp = (props) => {
     return () => { };
   }, []);
 
- 
+
   function changeTakenStatus() {
     if (takenStatus) {
       Alert.alert(
@@ -48,8 +48,8 @@ const RequestPickUp = (props) => {
             style: 'cancel',
           },
           {
-            text: 'OK', onPress: () => {
-              database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: true });
+            text: 'OK', onPress: async() => {
+              await database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: true, volonteerName: currentUser.name });
               setTakenStatus(true);
               console.log('OK Pressed');
             }
@@ -67,6 +67,11 @@ const RequestPickUp = (props) => {
     <TouchableOpacity onPress={changeTakenStatus}>
       <View style={takenStatus ? styles.TakenCareContener : styles.contener}>
         <View>
+          {props.together ? <Text style={styles.innerText}>
+            Request Type:
+            <Text style={styles.outterText}>Pick Up</Text>
+          </Text> : null}
+
           <Text style={styles.innerText}>
             Destination: <Text style={styles.outterText}>{props.req.childObj.destination}</Text>
           </Text>
@@ -82,6 +87,9 @@ const RequestPickUp = (props) => {
           <Text style={styles.innerText}>
             Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text>
           </Text>
+          {takenStatus ? <Text style={styles.innerText}>
+            Taken Care By : <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
+          </Text> :null}
         </View>
       </View>
     </TouchableOpacity>
