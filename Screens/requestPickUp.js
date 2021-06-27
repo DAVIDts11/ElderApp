@@ -15,12 +15,13 @@ const RequestPickUp = (props) => {
 
   return (
     <TouchableOpacity onPress={onprs}>
-      <View style={styles.contener}>
+      <View style={props.req.childObj.takenCareStatus?styles.TakenCareContener: styles.contener}>
         <View>
           <Text>{props.req.childObj.destination}</Text>
           <Text>{props.req.childObj.pickUpDate} </Text>
           <Text>{props.req.childObj.pickUpPlace} </Text>
           <Text>{props.req.childObj.pickUpTime} </Text>
+          <Text>{props.req.childObj.phone} </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -38,6 +39,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: 'tahoma',
   },
+  TakenCareContener:{
+    backgroundColor: 'honeydew',
+    borderWidth: 2.5,
+    borderColor: 'gray',
+    padding: 10,
+    flexDirection: 'row-reverse',
+    width: '95%',
+    marginTop: 10,
+    fontFamily: 'tahoma',
+  }
 });
 
 export default RequestPickUp;

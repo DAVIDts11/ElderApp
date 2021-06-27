@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
+import {format} from  "date-fns";
 
 const Request = (props) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -20,6 +21,8 @@ const Request = (props) => {
           <Text>{props.req.childObj.name}</Text>
           <Text>{props.req.childObj.amount} </Text>
           <Text>{props.req.childObj.user_email} </Text>
+          <Text>{props.req.childObj.phone} </Text>
+
         </View>
       </View>
     </TouchableOpacity>
