@@ -165,7 +165,7 @@ const Login = ({ navigation }) => {
                 email: data.email,
                 password: data.password,
                 selected: '',
-                phone:""
+                phone: '',
               };
               let matched = false;
               //check if user exists function

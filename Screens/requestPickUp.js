@@ -15,13 +15,23 @@ const RequestPickUp = (props) => {
 
   return (
     <TouchableOpacity onPress={onprs}>
-      <View style={props.req.childObj.takenCareStatus?styles.TakenCareContener: styles.contener}>
+      <View style={props.req.childObj.takenCareStatus ? styles.TakenCareContener : styles.contener}>
         <View>
-        <Text style={styles.innerText}>Destination: <Text style={styles.outterText}>{props.req.childObj.destination}</Text></Text>
-        <Text style={styles.innerText}>Pick-Up Place: <Text style={styles.outterText}>{props.req.childObj.pickUpPlace}</Text></Text>
-        <Text style={styles.innerText}>Pick-Up Date: <Text style={styles.outterText}>{props.req.childObj.pickUpDate}</Text></Text>
-        <Text style={styles.innerText}>Pick-Up Time: <Text style={styles.outterText}>{props.req.childObj.pickUpTime}</Text></Text>
-        <Text style={styles.innerText}>Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text></Text>
+          <Text style={styles.innerText}>
+            Destination: <Text style={styles.outterText}>{props.req.childObj.destination}</Text>
+          </Text>
+          <Text style={styles.innerText}>
+            Pick-Up Place: <Text style={styles.outterText}>{props.req.childObj.pickUpPlace}</Text>
+          </Text>
+          <Text style={styles.innerText}>
+            Pick-Up Date: <Text style={styles.outterText}>{props.req.childObj.pickUpDate}</Text>
+          </Text>
+          <Text style={styles.innerText}>
+            Pick-Up Time: <Text style={styles.outterText}>{props.req.childObj.pickUpTime}</Text>
+          </Text>
+          <Text style={styles.innerText}>
+            Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text>
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -50,15 +60,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: 'tahoma',
   },
-  innerText:{
+  innerText: {
     color: '#05375a',
     fontWeight: 'bold',
   },
-  outterText:{
-    color:'#05375a',
+  outterText: {
+    color: '#05375a',
     fontWeight: 'normal',
-
-  }
+  },
 });
 
 export default RequestPickUp;
