@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity,Alert, Linking } from 'react-native';
-import { useSelector } from 'react-redux';
-import moment from 'moment';
-import Time from '../Components/time';
-import database from '../config/fireBaseConfig';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
+import { useSelector } from "react-redux";
+import moment from "moment";
+import Time from "../Components/time";
+import database from "../config/fireBaseConfig";
 
 const Request = (props) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -11,7 +11,7 @@ const Request = (props) => {
   const [takenStatus, setTakenStatus] = useState(false);
   useEffect(() => {
     setTakenStatus(props.req.childObj.takenCareStatus);
-    return () => { };
+    return () => {};
   }, []);
 
   const time = moment(props.req.childObj.date || moment().format('MMMM Do YYYY, h:mm a'));
@@ -19,50 +19,50 @@ const Request = (props) => {
   function changeTakenStatus() {
     if (takenStatus) {
       Alert.alert(
-        'Change status of request',
-        'To: "Not taken care ?',
+        "Would you like to take care of this request?",
+        'Status will be changed to "taking care"',
         [
           {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
           },
           {
-            text: 'OK', onPress: () => {
-              database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: false });
+            text: "OK",
+            onPress: () => {
+              database
+                .ref("medRequest/" + props.req.childKey)
+                .update({ takenCareStatus: false });
               setTakenStatus(false);
-              console.log('OK Pressed')
-            }
+              console.log("OK Pressed");
+            },
           },
         ],
         { cancelable: false }
-
-
       );
-    }
-    else {
+    } else {
       Alert.alert(
-        'Chenge status of request',
-        'To: "Taken care ?',
+        "Would you like to take care of this request?",
+        'Status will be changed to "taking care"',
         [
           {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
           },
           {
-            text: 'OK', onPress: () => {
-              database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: true });
+            text: "OK",
+            onPress: () => {
+              database
+                .ref("medRequest/" + props.req.childKey)
+                .update({ takenCareStatus: true });
               setTakenStatus(true);
-              console.log('OK Pressed');
-            }
+              console.log("OK Pressed");
+            },
           },
         ],
         { cancelable: false }
-
-
       );
-
     }
   }
 
@@ -71,16 +71,24 @@ const Request = (props) => {
       <View style={takenStatus ? styles.TakenCareContener : styles.contener}>
         <View>
           <Text style={styles.innerText}>
-            Name: <Text style={styles.outterText}>{props.req.childObj.name}</Text>
+            Name:{" "}
+            <Text style={styles.outterText}>{props.req.childObj.name}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Amount needed: <Text style={styles.outterText}>{props.req.childObj.amount}</Text>
+            Amount needed:{" "}
+            <Text style={styles.outterText}>{props.req.childObj.amount}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Contact E-mail: <Text style={styles.outterText}>{props.req.childObj.user_email}</Text>
+            Contact E-mail:{" "}
+            <Text style={styles.outterText}>
+              {props.req.childObj.user_email}
+            </Text>
           </Text>
           <Text style={styles.innerText}>
-            Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phoneNumber}</Text>
+            Contact Phone:{" "}
+            <Text style={styles.outterText}>
+              {props.req.childObj.phoneNumber}
+            </Text>
           </Text>
           {/* <Text onPress={()=>{Linking.openURL(`tel:${props.req.childObj.phoneNumber}`);}}></Text> */}
           <Time time={time} style={styles.innerText} />
@@ -92,33 +100,33 @@ const Request = (props) => {
 
 const styles = StyleSheet.create({
   contener: {
-    backgroundColor: '#F29B9B',
+    backgroundColor: "#F29B9B",
     borderWidth: 2.5,
     borderRadius: 10,
-    borderColor: '#FFFFFF',
+    borderColor: "#FFFFFF",
     padding: 10,
-    width: '95%',
+    width: "95%",
     marginTop: 10,
-    fontFamily: 'tahoma',
+    fontFamily: "tahoma",
     fontSize: 18,
   },
   TakenCareContener: {
-    backgroundColor: '#B9DCB4',
+    backgroundColor: "#B9DCB4",
     borderWidth: 2.5,
-    borderColor: '#FFFFFF',
+    borderColor: "#FFFFFF",
     borderRadius: 10,
     padding: 10,
-    width: '95%',
+    width: "95%",
     marginTop: 10,
-    fontFamily: 'tahoma',
+    fontFamily: "tahoma",
   },
   innerText: {
-    color: '#05375a',
-    fontWeight: 'bold',
+    color: "#05375a",
+    fontWeight: "bold",
   },
   outterText: {
-    color: '#05375a',
-    fontWeight: 'normal',
+    color: "#05375a",
+    fontWeight: "normal",
   },
 });
 export default Request;

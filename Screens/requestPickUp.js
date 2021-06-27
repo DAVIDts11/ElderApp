@@ -16,8 +16,8 @@ const RequestPickUp = (props) => {
   function changeTakenStatus() {
     if (takenStatus) {
       Alert.alert(
-        'Change status of request',
-        'To: "Not taken care ?',
+        "Would you like to take care of this request?",
+        'Status will be changed to "taking care"',
         [
           {
             text: 'Cancel',
@@ -39,8 +39,8 @@ const RequestPickUp = (props) => {
     }
     else {
       Alert.alert(
-        'Chenge status of request',
-        'To: "Taken care ?',
+        "Would you like to take care of this request?",
+        'Status will be changed to "taking care"',
         [
           {
             text: 'Cancel',
