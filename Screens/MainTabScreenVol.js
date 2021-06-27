@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomepageVolunteer from './HomePageScreenVo';
 import ViewPage from './viewRequests';
 import ViewPickUp from './viewPickUpRequests';
-import Empty from './EmptyPage';
+import Empty from './Settings';
 
 const TabsVol = createMaterialBottomTabNavigator();
 
@@ -15,7 +15,7 @@ const MainTabScreenVol = () => (
       component={HomepageVolunteer}
       options={{
         tabBarLabel: 'Home',
-        tabBarColor: '#DCDCDA',
+        tabBarColor: '#CCCCCC',
         tabBarIcon: ({ color }) => <Icon name="ios-home" color={color} size={26} />,
       }}
     />
@@ -41,9 +41,9 @@ const MainTabScreenVol = () => (
       name="Empty"
       component={Empty}
       options={{
-        tabBarLabel: 'Call',
-        tabBarColor: '#F0CC99',
-        tabBarIcon: ({ color }) => <Icon name="call" color={color} size={26} />,
+        tabBarLabel: 'Settings',
+        tabBarColor: '#DFD7F7',
+        tabBarIcon: ({ color }) => <Icon name="settings" color={color} size={26} />,
       }}
     />
   </TabsVol.Navigator>

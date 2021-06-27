@@ -21,6 +21,7 @@ const HomepageMember = ({ navigation }) => {
 
       <View style={styles.header}>
         <Text style={styles.text_header}>Hello {currentUser.email}!</Text>
+        <Text style={styles.text_header}>What would you like to do today?</Text>
       </View>
 
       <View style={styles.footer}>
@@ -172,7 +173,7 @@ const HomepageMember = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#DCDCDA",
+    backgroundColor: "#CCCCCC",
   },
   header: {
     flex: 1,

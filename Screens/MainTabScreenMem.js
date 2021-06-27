@@ -15,7 +15,7 @@ const MainTabScreenMember = () => (
       component={HomepageMember}
       options={{
         tabBarLabel: 'Home',
-        tabBarColor: '#DCDCDA',
+        tabBarColor: '#CCCCCC',
         tabBarIcon: ({ color }) => <Icon name="ios-home" color={color} size={26} />,
       }}
     />
