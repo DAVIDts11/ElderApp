@@ -1,27 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity,Alert, Linking } from 'react-native';
 import { useSelector } from 'react-redux';
-import { format } from 'date-fns';
 import moment from 'moment';
 import Time from '../Components/time';
+import database from '../config/fireBaseConfig';
 
 const Request = (props) => {
   const { currentUser } = useSelector((state) => state.user);
 
-  const [date, setDate] = useState();
+  const [takenStatus, setTakenStatus] = useState(false);
   useEffect(() => {
-    setDate(new Date(props.req.childObj.date));
-    return () => {};
+    setTakenStatus(props.req.childObj.takenCareStatus);
+    return () => { };
   }, []);
 
   const time = moment(props.req.childObj.date || moment().format('MMMM Do YYYY, h:mm a'));
-  console.log(time);
 
-  function onprs() {}
+  function changeTakenStatus() {
+    if (takenStatus) {
+      Alert.alert(
+        'Change status of request',
+        'To: "Not taken care ?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK', onPress: () => {
+              database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: false });
+              setTakenStatus(false);
+              console.log('OK Pressed')
+            }
+          },
+        ],
+        { cancelable: false }
+
+
+      );
+    }
+    else {
+      Alert.alert(
+        'Chenge status of request',
+        'To: "Taken care ?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK', onPress: () => {
+              database.ref('medRequest/' + props.req.childKey).update({ takenCareStatus: true });
+              setTakenStatus(true);
+              console.log('OK Pressed');
+            }
+          },
+        ],
+        { cancelable: false }
+
+
+      );
+
+    }
+  }
 
   return (
-    <TouchableOpacity onPress={onprs}>
-      <View style={props.req.childObj.takenCareStatus ? styles.TakenCareContener : styles.contener}>
+    <TouchableOpacity onPress={changeTakenStatus}>
+      <View style={takenStatus ? styles.TakenCareContener : styles.contener}>
         <View>
           <Text style={styles.innerText}>
             Name: <Text style={styles.outterText}>{props.req.childObj.name}</Text>

@@ -14,7 +14,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const PickMeUpForm = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log('current user = ', currentUser);
 
   const [pickUpPlace, setpickUpPlace] = useState('');
   const [destination, setDestination] = useState('');
@@ -130,7 +129,6 @@ const PickMeUpForm = ({ navigation }) => {
           <TouchableOpacity
             style={styles.signIn}
             onPress={async () => {
-              console.log('pressed');
               let pickUprequest = {
                 pickUpPlace,
                 destination,
