@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Linking } from 'react-native';
 import { useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
 
 const HomepageMember = ({ navigation }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -18,40 +17,29 @@ const HomepageMember = ({ navigation }) => {
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Request Meds')}
-          style={styles.requestMeds}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('Request Meds')} style={styles.rects}>
           <Text style={styles.secText}>Request Medication</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Pick Me Up')}
-          style={[styles.pickMeUpstyle]}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('Pick Me Up')} style={[styles.rects]}>
           <Text style={styles.secText}>Request A Pick Up Ride!</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ViewPage')} style={styles.viewPage}>
+        <TouchableOpacity onPress={() => navigation.navigate('ViewPage')} style={styles.rects}>
           <Text style={styles.secText}>My Requests</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => Linking.openURL('https://chat.whatsapp.com/Hd74Cc8Vvc2IP0ff1JMVBG')}
-          style={styles.signinAdds}
+          style={styles.rects}
         >
           <Text style={styles.secText}>Chat with eachother!</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainScreen')}
-          style={styles.mainScreen}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('MainScreen')} style={styles.rects}>
           <Text style={styles.secText}>Sign Out</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => Linking.openURL(`tel:${100}`)} style={styles.signoutAdd}>
-          <LinearGradient colors={['#F29B9B', '#F7665E']} style={styles.signIn}>
-            <Text style={styles.secTextEm}>EMERGENCY CALL</Text>
-          </LinearGradient>
+        <TouchableOpacity onPress={() => Linking.openURL(`tel:${100}`)} style={styles.emerg}>
+          <Text style={styles.secTextEm}>EMERGENCY CALL</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -71,92 +59,54 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 3,
-    backgroundColor: '#fff',
+    display: 'flex',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-around',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
   },
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 35,
   },
-  signIn: {
-    width: '100%',
-    height: 50,
+  emerg: {
+    backgroundColor: '#F29B9B',
+    display: 'flex',
+    width: 150,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-  },
-  requestMeds: {
     borderColor: '#009387',
     borderWidth: 1,
     marginTop: 15,
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
   },
   secText: {
     color: '#98bc98',
     fontSize: 30,
     fontWeight: 'bold',
   },
-  pickMeUpstyle: {
-    borderColor: '#009387',
-    borderWidth: 1,
-    marginTop: 15,
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  viewPage: {
-    width: '100%',
-    height: 50,
+  rects: {
+    backgroundColor: 'white',
+    display: 'flex',
+    width: 150,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     borderColor: '#009387',
-    borderWidth: 1,
-    marginTop: 15,
-  },
-  signinAdds: {
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    borderColor: '#009387',
-    borderWidth: 1,
-    marginTop: 15,
-  },
-  mainScreen: {
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    borderColor: '#009387',
-    borderWidth: 1,
-    marginTop: 15,
-  },
-  signoutAdd: {
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    borderColor: '#ffffff',
     borderWidth: 1,
     marginTop: 15,
   },
   secTextEm: {
     color: '#ffffff',
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
   },
 });
