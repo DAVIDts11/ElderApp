@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 35,
   },
   action: {
     flexDirection: 'row',
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: '#05375a',
+    fontSize: 18,
   },
   button: {
     alignItems: 'center',
@@ -167,28 +168,28 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   reqText: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#fff',
   },
   pickUpPlaceText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   disAddrText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   pickTimeText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   pickDateText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
 });

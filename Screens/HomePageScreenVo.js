@@ -12,7 +12,7 @@ const HomepageVolunteer = ({ navigation }) => {
 
       <View style={styles.header}>
         <Text style={styles.text_header}>
-          Hello {currentUser.name}! Thanks for Volunteering @ ElderApp!
+          Hello {currentUser.name}! Thanks for Volunteering @ EldApp!
         </Text>
       </View>
 
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 35,
   },
   signIn: {
     width: '100%',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   secText: {
     color: '#98bc98',
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
   },
 });

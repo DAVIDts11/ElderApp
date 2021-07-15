@@ -130,16 +130,16 @@ const styles = StyleSheet.create({
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 40,
   },
   textSignAdd: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#fff',
   },
   footerAdd: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   action: {
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     paddingLeft: 10,
+    fontSize: 20,
     color: '#05375a',
   },
   button: {

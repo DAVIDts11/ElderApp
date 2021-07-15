@@ -71,25 +71,25 @@ const RequestPickUp = (props) => {
           ) : null}
 
           <Text style={styles.innerText}>
-            Destination: <Text style={styles.outterText}>{props.req.childObj.destination}</Text>
+            Destination: <Text style={styles.outterText}> {props.req.childObj.destination}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Pick-Up Place: <Text style={styles.outterText}>{props.req.childObj.pickUpPlace}</Text>
+            Pick-Up Place: <Text style={styles.outterText}> {props.req.childObj.pickUpPlace}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Pick-Up Date: <Text style={styles.outterText}>{props.req.childObj.pickUpDate}</Text>
+            Pick-Up Date: <Text style={styles.outterText}> {props.req.childObj.pickUpDate}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Pick-Up Time: <Text style={styles.outterText}>{props.req.childObj.pickUpTime}</Text>
+            Pick-Up Time: <Text style={styles.outterText}> {props.req.childObj.pickUpTime}</Text>
           </Text>
           <Text style={styles.innerText}>
-            Contact Phone: <Text style={styles.outterText}>{props.req.childObj.phone}</Text>
+            Contact Phone: <Text style={styles.outterText}> {props.req.childObj.phone}</Text>
           </Text>
           {/* <Time time={time} style={styles.innerText} /> */}
           {takenStatus ? (
             <Text style={styles.innerText}>
               Taken Care By :
-              <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
+              <Text style={styles.outterText}> {props.req.childObj.volonteerName}</Text>
             </Text>
           ) : null}
         </View>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
-    fontSize: 18,
+    fontSize: 24,
   },
   TakenCareContener: {
     backgroundColor: '#B9DCB4',
@@ -119,14 +119,17 @@ const styles = StyleSheet.create({
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
+    fontSize: 22,
   },
   innerText: {
     color: '#05375a',
     fontWeight: 'bold',
+    fontSize: 22,
   },
   outterText: {
     color: '#05375a',
     fontWeight: 'normal',
+    fontSize: 22,
   },
 });
 

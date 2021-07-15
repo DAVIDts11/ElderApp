@@ -75,25 +75,25 @@ const Request = (props) => {
           ) : null}
           <Text style={styles.innerText}>
             Name:
-            <Text style={styles.outterText}>{props.req.childObj.name}</Text>
+            <Text style={styles.outterText}> {props.req.childObj.name}</Text>
           </Text>
           <Text style={styles.innerText}>
             Amount needed:
-            <Text style={styles.outterText}>{props.req.childObj.amount}</Text>
+            <Text style={styles.outterText}> {props.req.childObj.amount}</Text>
           </Text>
           <Text style={styles.innerText}>
             Contact E-mail:
-            <Text style={styles.outterText}>{props.req.childObj.user_email}</Text>
+            <Text style={styles.outterText}> {props.req.childObj.user_email}</Text>
           </Text>
           <Text style={styles.innerText}>
             Contact Phone:
-            <Text style={styles.outterText}>{props.req.childObj.phoneNumber}</Text>
+            <Text style={styles.outterText}> {props.req.childObj.phoneNumber}</Text>
           </Text>
           <Time time={time} style={styles.innerText} />
           {takenStatus ? (
             <Text style={styles.innerText}>
-              Taken Care By :
-              <Text style={styles.outterText}>{props.req.childObj.volonteerName}</Text>
+              Taken Care By:
+              <Text style={styles.outterText}> {props.req.childObj.volonteerName}</Text>
             </Text>
           ) : null}
         </View>
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
-    fontSize: 18,
+    fontSize: 30,
   },
   TakenCareContener: {
     backgroundColor: '#B9DCB4',
@@ -123,14 +123,17 @@ const styles = StyleSheet.create({
     width: '95%',
     marginTop: 10,
     fontFamily: 'tahoma',
+    fontSize: 22,
   },
   innerText: {
     color: '#05375a',
     fontWeight: 'bold',
+    fontSize: 22,
   },
   outterText: {
     color: '#05375a',
     fontWeight: 'normal',
+    fontSize: 22,
   },
 });
 export default Request;

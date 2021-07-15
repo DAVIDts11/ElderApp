@@ -5,6 +5,7 @@ import HomepageMember from './HomePageScreenMem';
 import PickMeUpForm from './pickMeUpForm';
 import OverMedicationForm from './overMedicationForm';
 import ViewPage from './viewRequests';
+import { StyleSheet } from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator();
 

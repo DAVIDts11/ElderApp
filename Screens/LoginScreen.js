@@ -90,7 +90,7 @@ const Login = ({ navigation }) => {
       </View>
 
       <View style={styles.footer}>
-        <Text styles={styles.text_footer}>Email</Text>
+        <Text style={styles.text_title}>Email</Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="black" size={20} />
           <TextInput
@@ -106,7 +106,7 @@ const Login = ({ navigation }) => {
             </View>
           ) : null}
         </View>
-        <Text style={styles.foot}>Password</Text>
+        <Text style={styles.text_title_pw}>Password</Text>
         <View style={styles.action}>
           <FontAwesome name="lock" color="black" size={20} />
           <TextInput
@@ -207,15 +207,19 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
+    fontSize: 100,
   },
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 60,
   },
-  text_footer: {
-    color: '#05375a',
-    fontSize: 18,
+  text_title: {
+    fontSize: 40,
+  },
+  text_title_pw: {
+    fontSize: 40,
+    marginTop: 35,
   },
   action: {
     flexDirection: 'row',
@@ -227,6 +231,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: '#05375a',
+    fontSize: 22,
   },
   button: {
     alignItems: 'center',
@@ -239,18 +244,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  foot: {
-    color: '#05375a',
-    fontSize: 18,
-    marginTop: 35,
-  },
   textAdd: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
     color: 'white',
   },
   textSec: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#009387',
   },

@@ -27,6 +27,7 @@
     "expo": "~41.0.1",
     "expo-linear-gradient": "~9.1.0",
     "expo-location": "~12.0.4",
+    "expo-sensors": "~10.1.2",
     "expo-status-bar": "~1.0.4",
     "firebase": "^8.6.8",
     "moment": "^2.29.1",

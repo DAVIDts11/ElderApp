@@ -22,7 +22,7 @@ const HomepageMember = ({ navigation }) => {
           onPress={() => navigation.navigate('Request Meds')}
           style={styles.requestMeds}
         >
-          <Text style={styles.secText}>Request Over The Counter Medication</Text>
+          <Text style={styles.secText}>Request Medication</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 35,
   },
   signIn: {
     width: '100%',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   secText: {
     color: '#98bc98',
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   pickMeUpstyle: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
   secTextEm: {
     color: '#ffffff',
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 });

@@ -24,5 +24,6 @@ export default Time;
 const styles = StyleSheet.create({
   text: {
     marginHorizontal: 10,
+    fontSize: 20,
   },
 });

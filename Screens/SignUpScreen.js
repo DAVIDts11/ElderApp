@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    // paddingBottom: 50,
   },
   footer: {
     backgroundColor: '#fff',
@@ -319,15 +319,15 @@ const styles = StyleSheet.create({
   text_header: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 35,
   },
   text_footer: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
   },
   errorMsg: {
     color: '#FF0000',
-    fontSize: 14,
+    fontSize: 22,
   },
   action: {
     flexDirection: 'row',
@@ -340,6 +340,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     color: '#05375a',
+    fontSize: 20,
   },
   button: {
     alignItems: 'center',
@@ -355,25 +356,25 @@ const styles = StyleSheet.create({
   passwardtext: {
     marginTop: 35,
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
   },
   nameText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   phoneText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   userTypeText: {
     color: '#05375a',
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 35,
   },
   signUpText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
   },
@@ -388,7 +389,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   signInText: {
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#60a860',
   },

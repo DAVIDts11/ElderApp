@@ -1,7 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Dimensions, StyleSheet, Image } from 'react-native';
-
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 // import { useTheme } from '@react-navigation/native';
@@ -12,13 +10,12 @@ const MainScreen = ({ navigation }) => (
       <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="stretch" />
     </View>
     <View style={styles.footer}>
-      <Text style={styles.title}>Stay connected with everyone!</Text>
+      <Text style={styles.title}>Welcome to EldHelp!</Text>
       <Text style={styles.text}>Sign in with an account</Text>
       <View style={styles.button}>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <LinearGradient colors={['#98bc98', '#91c391']} style={styles.signIn}>
             <Text style={styles.textSign}>Get Started</Text>
-            <MaterialIcons name="navigate-next" color="#fff" size={20} />
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -37,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#98bc98',
   },
   header: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -55,19 +52,20 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#05375a',
-    fontSize: 30,
+    fontSize: 60,
     fontWeight: 'bold',
   },
   text: {
     color: 'grey',
     marginTop: 5,
+    fontSize: 20,
   },
   button: {
     alignItems: 'flex-end',
     marginTop: 30,
   },
   signIn: {
-    width: 150,
+    width: 220,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
@@ -77,5 +75,6 @@ const styles = StyleSheet.create({
   textSign: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 35,
   },
 });
